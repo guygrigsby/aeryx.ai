@@ -97,7 +97,7 @@ Everything the terminal reveals (projects, bio, email, booking) also exists in t
 
 - Email is never in the static HTML. The `contact` command assembles the address in JS at the moment it runs (for example from parts: `guy` + `@` + `grigsby.dev`). Scrapers reading page source find nothing.
 - Cloudflare Scrape Shield obfuscates any address it does find, as a second net.
-- A Cal.com hosted link covers high-intent visitors and exposes no address.
+- The Cal.com hosted link (https://cal.com/guygrigsby) covers high-intent visitors and exposes no address.
 - Both paths mirrored as visible buttons in the contact section, so neither is locked behind typing.
 
 ## Error handling and edges
@@ -124,5 +124,4 @@ Everything the terminal reveals (projects, bio, email, booking) also exists in t
 
 - Exact copy for hero, bio, and each project gloss.
 - Final socials list for the footer (GitHub confirmed; X/LinkedIn TBD).
-- Cal.com account/link URL.
 - Font choices for the Daybreak treatment (display grotesk plus mono).
