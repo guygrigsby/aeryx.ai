@@ -1,0 +1,81 @@
+---
+import { projects } from '../lib/projects';
+
+// Email parts stay separate; they are only joined inside the bundled JS at
+// runtime, so the assembled address never appears in static HTML.
+const ctx = {
+  projects,
+  email: { user: 'guy', domain: 'grigsby.dev' },
+  calLink: 'https://cal.com/guygrigsby',
+};
+---
+<div class="term" role="region" aria-label="interactive terminal">
+  <div class="term-bar"><span></span><span></span><span></span> aeryx</div>
+  <div id="screen" class="term-screen" aria-live="polite"></div>
+  <div class="term-input-row">
+    <span class="term-prompt">aeryx ~ %</span>
+    <input id="input" class="term-input" autocomplete="off" spellcheck="false"
+           aria-label="terminal command input" placeholder="type a command, or tap below" />
+  </div>
+  <div class="chips" role="group" aria-label="quick commands">
+    <button class="chip" data-cmd="ls">ls</button>
+    <button class="chip" data-cmd="about">about</button>
+    <button class="chip" data-cmd="contact">contact</button>
+    <button class="chip" data-cmd="book">book</button>
+    <button class="chip" data-cmd="jess run --think">jess run --think</button>
+  </div>
+</div>
+
+<script type="application/json" id="term-ctx" is:inline set:html={JSON.stringify(ctx)}></script>
+
+<script>
+  import { createTerminal } from '../scripts/terminal.ts';
+
+  const ctxEl = document.getElementById('term-ctx');
+  const screen = document.getElementById('screen');
+  const input = document.getElementById('input') as HTMLInputElement | null;
+
+  if (ctxEl && screen && input) {
+    const ctx = JSON.parse(ctxEl.textContent ?? '{}');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const term = createTerminal({ screen, input, ctx, instant: reduce });
+
+    // intro
+    term.submit('help');
+
+    document.querySelectorAll<HTMLButtonElement>('.chip').forEach((b) => {
+      b.addEventListener('click', () => {
+        const cmd = b.getAttribute('data-cmd');
+        if (cmd) term.submit(cmd);
+        input.focus();
+      });
+    });
+  }
+</script>
+
+<style>
+  .term {
+    background: var(--term-bg);
+    color: var(--term-fg);
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    box-shadow: 0 24px 60px rgba(22, 36, 61, 0.22);
+    overflow: hidden;
+  }
+  .term-bar { padding: 10px 14px; color: var(--term-muted); font-size: 0.75rem; }
+  .term-bar span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #2a3550; margin-right: 5px; }
+  .term-screen { padding: 14px; min-height: 220px; max-height: 360px; overflow-y: auto; }
+  .term-screen :global(.line) { white-space: pre-wrap; }
+  .term-screen :global(.prompt) { color: var(--term-muted); }
+  .term-screen :global(.muted) { color: var(--term-muted); }
+  .term-screen :global(.accent) { color: var(--term-accent); }
+  .term-screen :global(.error) { color: var(--term-error); }
+  .term-screen :global(a) { color: var(--term-accent); }
+  .term-input-row { display: flex; gap: 8px; padding: 8px 14px; border-top: 1px solid #1b263f; }
+  .term-prompt { color: var(--term-muted); }
+  .term-input { flex: 1; background: transparent; border: 0; color: var(--term-fg); font: inherit; outline: none; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
+  .chip { background: #16223c; color: var(--term-accent); border: 1px solid #243456; border-radius: 999px; padding: 4px 12px; font: inherit; font-size: 0.8rem; cursor: pointer; }
+  .chip:hover { background: #1d2c4c; }
+</style>

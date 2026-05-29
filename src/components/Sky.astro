@@ -1,0 +1,31 @@
+---
+// Daybreak gradient frame. Light parallax via a CSS variable updated on scroll;
+// disabled under prefers-reduced-motion (see global.css).
+---
+<div class="sky">
+  <div class="sky-grad" data-parallax></div>
+  <slot />
+</div>
+
+<style>
+  .sky { position: relative; isolation: isolate; }
+  .sky-grad {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(170deg, var(--sky-top) 0%, var(--sky-bottom) 70%);
+    transform: translateY(calc(var(--scroll, 0) * -0.04px));
+  }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce) {
+    const el = document.querySelector('[data-parallax]') as HTMLElement | null;
+    if (el) {
+      addEventListener('scroll', () => {
+        el.style.setProperty('--scroll', String(window.scrollY));
+      }, { passive: true });
+    }
+  }
+</script>

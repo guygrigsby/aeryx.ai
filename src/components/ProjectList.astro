@@ -1,0 +1,26 @@
+---
+import { projects } from '../lib/projects';
+---
+<section class="section" id="projects">
+  <div class="wrap">
+    <p class="label">What I'm building</p>
+    <h2>Projects</h2>
+    <ul class="projects">
+      {projects.map((p) => (
+        <li class="project">
+          <h3>{p.name} <span class="gloss">— {p.gloss}</span></h3>
+          <p>{p.summary}</p>
+          <p class="status">{p.status}</p>
+          <a href={p.repo} target="_blank" rel="noopener">github →</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .projects { list-style: none; display: grid; gap: 28px; margin-top: 24px; }
+  .project h3 { font-size: 1.2rem; }
+  .gloss { color: var(--muted); font-weight: 400; font-style: italic; }
+  .status { color: var(--muted); font-size: 0.85rem; }
+</style>
