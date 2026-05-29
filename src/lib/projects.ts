@@ -22,7 +22,7 @@ export const projects: ProjectMeta[] = [
     slug: 'jess',
     name: 'Jess',
     gloss: "the strap on the falcon's leg",
-    summary: 'Streaming agent-loop runtime with memory and skills.',
+    summary: 'Streaming agent harness with memory and skills.',
     status: 'work in progress',
     repo: 'https://github.com/guygrigsby/jess',
   },

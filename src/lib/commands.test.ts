@@ -51,7 +51,7 @@ describe('runCommand info', () => {
     const out = runCommand('cat jess', ctx);
     const text = out.lines.map((l) => l.text).join('\n');
     expect(text).toContain('Jess');
-    expect(text).toContain('Streaming agent-loop runtime');
+    expect(text).toContain('Streaming agent harness');
     const link = out.lines.find((l) => l.className === 'link');
     expect(link?.href).toBe('https://github.com/guygrigsby/jess');
   });
