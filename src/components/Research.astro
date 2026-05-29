@@ -1,0 +1,30 @@
+---
+import { research, hfProfile } from '../lib/research';
+---
+<section class="section" id="research">
+  <div class="wrap">
+    <p class="label">AI research</p>
+    <h2>Research</h2>
+    <p>Experiments and writeups, mostly on local inference and the internals of attention. Formal profile on <a href={hfProfile} target="_blank" rel="noopener">Hugging Face →</a></p>
+    <ul class="research">
+      {research.map((r) => (
+        <li class="paper">
+          <h3>{r.title}</h3>
+          <p>{r.summary}</p>
+          <p class="links">
+            <a href={r.writeupUrl} target="_blank" rel="noopener">writeup →</a>
+            {r.hfUrl && <a href={r.hfUrl} target="_blank" rel="noopener">Hugging Face →</a>}
+          </p>
+        </li>
+      ))}
+    </ul>
+    <p class="more">More as I finish them.</p>
+  </div>
+</section>
+
+<style>
+  .research { list-style: none; display: grid; gap: 28px; margin-top: 24px; }
+  .paper h3 { font-size: 1.2rem; }
+  .links { display: flex; gap: 18px; margin-top: 6px; }
+  .more { color: var(--muted); font-size: 0.85rem; margin-top: 28px; }
+</style>

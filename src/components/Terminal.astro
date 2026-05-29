@@ -1,10 +1,13 @@
 ---
 import { projects } from '../lib/projects';
+import { research, hfProfile } from '../lib/research';
 
 // Email parts stay separate; they are only joined inside the bundled JS at
 // runtime, so the assembled address never appears in static HTML.
 const ctx = {
   projects,
+  research,
+  hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
   calLink: 'https://cal.com/guygrigsby',
 };
@@ -20,6 +23,7 @@ const ctx = {
   <div class="chips" role="group" aria-label="quick commands">
     <button class="chip" data-cmd="ls">ls</button>
     <button class="chip" data-cmd="about">about</button>
+    <button class="chip" data-cmd="research">research</button>
     <button class="chip" data-cmd="contact">contact</button>
     <button class="chip" data-cmd="book">book</button>
     <button class="chip" data-cmd="jess run --think">jess run --think</button>

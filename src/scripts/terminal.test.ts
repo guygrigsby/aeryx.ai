@@ -1,9 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createTerminal } from './terminal';
 import { projects } from '../lib/projects';
+import { research, hfProfile } from '../lib/research';
 
 const ctx = {
   projects,
+  research,
+  hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
   calLink: 'https://cal.com/guygrigsby',
 };

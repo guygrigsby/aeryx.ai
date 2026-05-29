@@ -1,9 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { runCommand, type CommandContext } from './commands';
 import { projects } from './projects';
+import { research, hfProfile } from './research';
 
 const ctx: CommandContext = {
   projects,
+  research,
+  hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
   calLink: 'https://cal.com/guygrigsby',
 };
@@ -72,6 +75,17 @@ describe('runCommand info', () => {
       expect(text).toContain('HashiCorp');
       expect(text).toContain('Denver');
     }
+  });
+
+  it('research links the Hugging Face profile and each writeup', () => {
+    const out = runCommand('research', ctx);
+    const links = out.lines.filter((l) => l.className === 'link');
+    expect(links.some((l) => l.href === hfProfile)).toBe(true);
+    for (const r of research) {
+      expect(links.some((l) => l.href === r.writeupUrl)).toBe(true);
+    }
+    const text = out.lines.map((l) => l.text).join('\n');
+    expect(text).toContain('Differential Transformer');
   });
 });
 

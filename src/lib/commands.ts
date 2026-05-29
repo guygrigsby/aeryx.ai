@@ -1,7 +1,10 @@
 import type { ProjectMeta } from './projects';
+import type { ResearchItem } from './research';
 
 export interface CommandContext {
   projects: ProjectMeta[];
+  research: ResearchItem[];
+  hfProfile: string;
   email: { user: string; domain: string };
   calLink: string;
 }
@@ -27,6 +30,7 @@ function help(): CommandResult {
       { text: '  ls            list the projects' },
       { text: '  cat <project> read about one project' },
       { text: '  about         who runs this studio' },
+      { text: '  research      AI research and writeups' },
       { text: '  contact       reveal email' },
       { text: '  book          grab a call' },
       { text: '  jess run --think   watch an agent loop' },
@@ -71,6 +75,22 @@ function about(): CommandResult {
       { text: 'The aeryx projects below are what I am shaping now.' },
     ],
   };
+}
+
+function research(ctx: CommandContext): CommandResult {
+  const lines: OutputLine[] = [
+    { text: 'AI research', className: 'accent' },
+    { text: 'formal profile on Hugging Face', className: 'muted' },
+    { text: ctx.hfProfile, className: 'link', href: ctx.hfProfile },
+  ];
+  for (const r of ctx.research) {
+    lines.push({ text: '' });
+    lines.push({ text: r.title });
+    lines.push({ text: r.summary, className: 'muted' });
+    lines.push({ text: 'writeup', className: 'link', href: r.writeupUrl });
+  }
+  lines.push({ text: 'more as they finish', className: 'muted' });
+  return { lines };
 }
 
 function contact(ctx: CommandContext): CommandResult {
@@ -119,6 +139,8 @@ export function runCommand(input: string, ctx: CommandContext): CommandResult {
     case 'about':
     case 'whoami':
       return about();
+    case 'research':
+      return research(ctx);
     case 'contact':
       return contact(ctx);
     case 'book':
