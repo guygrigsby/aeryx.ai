@@ -2,8 +2,15 @@ import { describe, it, expect } from 'vitest';
 import { projects, type ProjectMeta } from './projects';
 
 describe('projects', () => {
-  it('lists exactly the four public projects in order', () => {
-    expect(projects.map((p) => p.slug)).toEqual(['talon', 'jess', 'perch', 'rookery']);
+  it('lists exactly the six public projects in order', () => {
+    expect(projects.map((p) => p.slug)).toEqual([
+      'talon',
+      'jess',
+      'perch',
+      'rookery',
+      'mews',
+      'pinion',
+    ]);
   });
 
   it('never includes pluma', () => {

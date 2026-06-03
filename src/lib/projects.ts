@@ -42,4 +42,22 @@ export const projects: ProjectMeta[] = [
     status: 'work in progress',
     repo: 'https://github.com/guygrigsby/rookery',
   },
+  {
+    slug: 'mews',
+    name: 'Mews',
+    gloss: 'the falcon house',
+    summary:
+      'Supervises named MLX models (chat, vision, embedding, audio) behind one OpenAI-compatible endpoint on Apple Silicon.',
+    status: 'work in progress',
+    repo: 'https://github.com/guygrigsby/mlx-stack',
+  },
+  {
+    slug: 'pinion',
+    name: 'Pinion',
+    gloss: 'the flight feathers',
+    summary:
+      'Gives agent tools a declared effect surface and composes them into a typed dataflow graph, so the risk of a combination is inspectable before it runs.',
+    status: 'work in progress',
+    repo: 'https://github.com/guygrigsby/pinion',
+  },
 ];

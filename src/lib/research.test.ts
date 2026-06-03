@@ -12,6 +12,12 @@ describe('research', () => {
     expect(item?.writeupUrl).toMatch(/^https:\/\/github\.com\/guygrigsby\/diff-mlx\/.*final-writeup\.md$/);
   });
 
+  it('includes the guardian dialect-fair hate classifier on the aeryx-ai org', () => {
+    const item = research.find((r) => r.slug === 'guardian');
+    expect(item).toBeTruthy();
+    expect(item?.writeupUrl).toBe('https://huggingface.co/aeryx-ai/guardian-dialect-fair-hate');
+  });
+
   it('gives every item a title, summary, and writeup url', () => {
     for (const r of research) {
       expect(r.title.length).toBeGreaterThan(0);
