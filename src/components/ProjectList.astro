@@ -8,7 +8,7 @@ import { projects } from '../lib/projects';
     <ul class="projects">
       {projects.map((p) => (
         <li class="project">
-          <h3>{p.name} <span class="gloss">— {p.gloss}</span></h3>
+          <h3>{p.name}{p.gloss && <span class="gloss"> — {p.gloss}</span>}</h3>
           <p>{p.summary}</p>
           <p class="status">{p.status}</p>
           <a href={p.repo} target="_blank" rel="noopener">github →</a>

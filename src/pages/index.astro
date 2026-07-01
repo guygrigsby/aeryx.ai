@@ -13,10 +13,25 @@ const calLink = 'https://cal.com/guygrigsby';
       <div class="wrap">
         <p class="label">Guy Grigsby · aeryx</p>
         <h1>A studio for agentic software.</h1>
-        <p class="lede">Agent runtimes, AI tooling, and the systems that hold them up. Built in Go, in Denver.</p>
+        <p class="lede">I build agentic systems, and I help teams learn to build them too. In Go, from Denver.</p>
         <div class="term-shell"><Terminal /></div>
       </div>
     </header>
+
+    <section class="section" id="work">
+      <div class="wrap">
+        <p class="label">Working together</p>
+        <h2>Put agents to work, safely.</h2>
+        <p>Most teams can see agentic development coming and aren't sure how to adopt it without shipping something they'll regret. I embed with your engineers to fix that: wiring agents into the real workflow, setting the guardrails, and building the security habits that keep an agentic codebase trustworthy.</p>
+        <p>The projects and research below are where I prove this out. It's the same work I'd bring to your team.</p>
+        <ul class="offer">
+          <li>Agentic development, in your stack and your pipeline.</li>
+          <li>Security review for AI-written and agent-executed code.</li>
+          <li>Hands-on with your engineers, not a slide deck.</li>
+        </ul>
+        <div class="actions"><a class="btn" href="#contact">work with me →</a></div>
+      </div>
+    </section>
 
     <ProjectList />
 
@@ -26,7 +41,7 @@ const calLink = 'https://cal.com/guygrigsby';
       <div class="wrap">
         <p class="label">About</p>
         <h2>Guy Grigsby</h2>
-        <p>Software engineer at HashiCorp, based in Denver. Building agentic systems and AI tooling, mostly in Go. The projects above are works in progress, the things I'm shaping now.</p>
+        <p>Software engineer at HashiCorp, based in Denver. I build agentic systems and AI tooling, mostly in Go, and I help teams fold that same practice, and its security, into how they ship. The projects and research here are what I'm shaping now, and the proof of what I'd bring to your work.</p>
       </div>
     </section>
 
@@ -34,7 +49,7 @@ const calLink = 'https://cal.com/guygrigsby';
       <div class="wrap">
         <p class="label">Contact</p>
         <h2>Let's talk.</h2>
-        <p>Hiring for a project, or just curious what I'm up to?</p>
+        <p>Bringing agents into your team, hiring for a project, or just curious what I'm up to?</p>
         <div class="actions">
           <a class="btn" id="email-btn" href="#">email me</a>
           <a class="btn" href={calLink} target="_blank" rel="noopener">book a call</a>
@@ -61,6 +76,7 @@ const calLink = 'https://cal.com/guygrigsby';
     .hero h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); margin: 6px 0 12px; }
     .lede { font-size: 1.15rem; color: var(--muted); max-width: 38ch; }
     .term-shell { margin-top: 40px; }
+    .offer { margin: 18px 0 24px; padding-left: 20px; color: var(--muted); display: grid; gap: 6px; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
     .btn { display: inline-block; background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; }
     .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--muted); }

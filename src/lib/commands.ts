@@ -58,7 +58,7 @@ function cat(args: string[], ctx: CommandContext): CommandResult {
   }
   return {
     lines: [
-      { text: `${p.name} — ${p.gloss}`, className: 'accent' },
+      { text: p.gloss ? `${p.name} — ${p.gloss}` : p.name, className: 'accent' },
       { text: p.summary },
       { text: p.status, className: 'muted' },
       { text: p.repo, className: 'link', href: p.repo },

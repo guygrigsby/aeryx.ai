@@ -1,8 +1,8 @@
 export interface ProjectMeta {
   slug: string;
   name: string;
-  /** falconry-term gloss, e.g. "the strap on the falcon's leg" */
-  gloss: string;
+  /** optional falconry-term gloss, e.g. "the strap on the falcon's leg" */
+  gloss?: string;
   /** one-line description */
   summary: string;
   status: string;
@@ -10,14 +10,6 @@ export interface ProjectMeta {
 }
 
 export const projects: ProjectMeta[] = [
-  {
-    slug: 'talon',
-    name: 'Talon',
-    gloss: 'the grip',
-    summary: 'Fast, secure agent runtime.',
-    status: 'work in progress',
-    repo: 'https://github.com/guygrigsby/talon',
-  },
   {
     slug: 'jess',
     name: 'Jess',
@@ -27,37 +19,19 @@ export const projects: ProjectMeta[] = [
     repo: 'https://github.com/guygrigsby/jess',
   },
   {
-    slug: 'perch',
-    name: 'Perch',
-    gloss: 'where it rests',
-    summary: 'Shared foundation for daemon and CLI apps: transport, config, lifecycle.',
-    status: 'work in progress',
-    repo: 'https://github.com/guygrigsby/perch',
-  },
-  {
-    slug: 'rookery',
-    name: 'Rookery',
-    gloss: 'the nesting colony',
-    summary: 'Service template that scaffolds a daemon and CLI on Perch.',
-    status: 'work in progress',
-    repo: 'https://github.com/guygrigsby/rookery',
-  },
-  {
-    slug: 'mews',
-    name: 'Mews',
-    gloss: 'the falcon house',
+    slug: 'lmkit',
+    name: 'lmkit',
     summary:
-      'Supervises named MLX models (chat, vision, embedding, audio) behind one OpenAI-compatible endpoint on Apple Silicon.',
+      'Train language models from scratch on one machine: pretrain, anneal, SFT, tokenizer, eval, and experiment tracking. Architecture-agnostic, and it runs the same on CUDA or AMD ROCm.',
     status: 'work in progress',
-    repo: 'https://github.com/guygrigsby/mlx-stack',
+    repo: 'https://github.com/guygrigsby/lmkit',
   },
   {
-    slug: 'pinion',
-    name: 'Pinion',
-    gloss: 'the flight feathers',
+    slug: 'lmkit-go',
+    name: 'lmkit-go',
     summary:
-      'Gives agent tools a declared effect surface and composes them into a typed dataflow graph, so the risk of a combination is inspectable before it runs.',
+      'From-scratch LLM training in pure Go on an XLA backend, with fused flash attention on both vendors. On NVIDIA it lowers to cuDNN fused SDPA, generalized into a fused-attention abstraction and upstreamed to gomlx/go-xla. On AMD it binds AOTriton flash kernels through an XLA custom-call and a PJRT FFI handler, so the same model trains at 2k context on an 8GB ROCm card.',
     status: 'work in progress',
-    repo: 'https://github.com/guygrigsby/pinion',
+    repo: 'https://github.com/guygrigsby/lmkit-go',
   },
 ];

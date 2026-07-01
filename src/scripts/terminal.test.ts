@@ -28,7 +28,7 @@ describe('createTerminal', () => {
   it('renders output when a command is submitted', () => {
     const { screen, term } = setup();
     term.submit('ls');
-    expect(screen.textContent).toContain('talon');
+    expect(screen.textContent).toContain('jess');
   });
 
   it('echoes the command as a prompt line', () => {
