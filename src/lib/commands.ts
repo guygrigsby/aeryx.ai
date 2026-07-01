@@ -70,7 +70,7 @@ function about(): CommandResult {
   return {
     lines: [
       { text: 'Guy Grigsby', className: 'accent' },
-      { text: 'Software engineer at HashiCorp, in Denver.' },
+      { text: 'Software engineer and AI researcher, in Denver.' },
       { text: 'Building agentic systems and AI tooling in Go.' },
       { text: 'The aeryx projects below are what I am shaping now.' },
     ],
