@@ -12,6 +12,8 @@ export interface Terminal {
   submit(raw: string): void;
 }
 
+const KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+
 function renderLine(line: OutputLine): HTMLElement {
   const el = document.createElement('div');
   el.className = `line ${line.className ?? ''}`.trim();
@@ -71,6 +73,18 @@ export function createTerminal(opts: TerminalOptions): Terminal {
       const raw = input.value;
       input.value = '';
       submit(raw);
+    }
+  });
+
+  const konamiBuf: string[] = [];
+  input.addEventListener('keydown', (e) => {
+    konamiBuf.push(e.key.toLowerCase());
+    if (konamiBuf.length > KONAMI.length) konamiBuf.shift();
+    if (konamiBuf.length === KONAMI.length && KONAMI.every((k, i) => konamiBuf[i] === k)) {
+      konamiBuf.length = 0;
+      window.dispatchEvent(new CustomEvent('aeryx:konami'));
+      screen.appendChild(renderLine({ text: 'the flock scatters across the sky, then reforms. nicely done.', className: 'accent' }));
+      screen.scrollTop = screen.scrollHeight;
     }
   });
 

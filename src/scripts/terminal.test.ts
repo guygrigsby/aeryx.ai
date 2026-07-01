@@ -59,4 +59,15 @@ describe('createTerminal', () => {
     expect(screen.textContent).toContain('Denver');
     expect(input.value).toBe('');
   });
+
+  it('fires aeryx:konami on the konami sequence', () => {
+    const { input } = setup();
+    let fired = false;
+    window.addEventListener('aeryx:konami', () => { fired = true; }, { once: true });
+    const keys = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    for (const key of keys) {
+      input.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+    }
+    expect(fired).toBe(true);
+  });
 });
