@@ -49,7 +49,8 @@ describe('createTerminal', () => {
     const { screen, term } = setup();
     term.submit('contact');
     const a = screen.querySelector('a') as HTMLAnchorElement;
-    expect(a.getAttribute('href')).toBe('mailto:guy@grigsby.dev');
+    const addr = `${ctx.email.user}@${ctx.email.domain}`;
+    expect(a.getAttribute('href')).toBe(`mailto:${addr}`);
   });
 
   it('runs a command on Enter from the input', () => {
