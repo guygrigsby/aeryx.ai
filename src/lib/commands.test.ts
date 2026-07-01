@@ -31,7 +31,7 @@ describe('runCommand core', () => {
     const out = runCommand('frobnicate the quux', ctx);
     const text = out.lines.map((l) => l.text).join('\n').toLowerCase();
     expect(text).not.toContain('command not found');
-    expect(text).toContain('no llm');
+    expect(text).toContain("not an llm");
   });
 
   it('treats empty input as a no-op', () => {

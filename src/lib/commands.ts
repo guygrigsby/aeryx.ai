@@ -230,7 +230,7 @@ export function runCommand(input: string, ctx: CommandContext): CommandResult {
       return {
         lines: [
           { text: "that one's not in what I know.", className: 'accent' },
-          { text: "I won't fake it, there is no LLM here, so no made-up answers.", className: 'error' },
+          { text: "Not going to lie. I'm not an LLM." },
           { text: "ask about Guy's work, projects, research, or how to reach him.", className: 'muted' },
         ],
       };
