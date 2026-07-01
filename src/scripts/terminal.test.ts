@@ -2,13 +2,14 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { createTerminal } from './terminal';
 import { projects } from '../lib/projects';
 import { research, hfProfile } from '../lib/research';
+import { calLink } from '../lib/site';
 
 const ctx = {
   projects,
   research,
   hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
-  calLink: 'https://cal.com/guygrigsby',
+  calLink,
 };
 
 function setup() {
@@ -55,7 +56,7 @@ describe('createTerminal', () => {
     const { screen, input } = setup();
     input.value = 'about';
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    expect(screen.textContent).toContain('HashiCorp');
+    expect(screen.textContent).toContain('Denver');
     expect(input.value).toBe('');
   });
 });

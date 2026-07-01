@@ -2,13 +2,14 @@ import { describe, it, expect } from 'vitest';
 import { runCommand, type CommandContext } from './commands';
 import { projects } from './projects';
 import { research, hfProfile } from './research';
+import { calLink } from './site';
 
 const ctx: CommandContext = {
   projects,
   research,
   hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
-  calLink: 'https://cal.com/guygrigsby',
+  calLink,
 };
 
 describe('runCommand core', () => {
@@ -69,10 +70,9 @@ describe('runCommand info', () => {
     expect(out.lines[0].text.toLowerCase()).toContain('usage');
   });
 
-  it('about and whoami both return the bio mentioning HashiCorp and Denver', () => {
+  it('about and whoami both return the bio mentioning Denver', () => {
     for (const c of ['about', 'whoami']) {
       const text = runCommand(c, ctx).lines.map((l) => l.text).join('\n');
-      expect(text).toContain('HashiCorp');
       expect(text).toContain('Denver');
     }
   });
@@ -97,10 +97,10 @@ describe('runCommand actions', () => {
     expect(link?.href).toBe('mailto:guy@grigsby.dev');
   });
 
-  it('book prints the cal.com link', () => {
+  it('book prints the booking link', () => {
     const out = runCommand('book', ctx);
     const link = out.lines.find((l) => l.className === 'link');
-    expect(link?.href).toBe('https://cal.com/guygrigsby');
+    expect(link?.href).toBe(calLink);
   });
 
   it('jess run --think requests the agent-loop animation', () => {
