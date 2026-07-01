@@ -27,10 +27,11 @@ describe('runCommand core', () => {
     expect(out.lines).toEqual([]);
   });
 
-  it('handles unknown commands gracefully', () => {
-    const out = runCommand('frobnicate', ctx);
-    expect(out.lines[0].className).toBe('error');
-    expect(out.lines[0].text.toLowerCase()).toContain('command not found');
+  it('refuses gracefully instead of hallucinating on unknown input', () => {
+    const out = runCommand('frobnicate the quux', ctx);
+    const text = out.lines.map((l) => l.text).join('\n').toLowerCase();
+    expect(text).not.toContain('command not found');
+    expect(text).toContain('no llm');
   });
 
   it('treats empty input as a no-op', () => {
@@ -92,9 +93,10 @@ describe('runCommand info', () => {
 describe('runCommand actions', () => {
   it('contact assembles the email from parts and exposes it as a mailto link', () => {
     const out = runCommand('contact', ctx);
+    const addr = `${ctx.email.user}@${ctx.email.domain}`;
     const link = out.lines.find((l) => l.className === 'link');
-    expect(link?.text).toBe('guy@grigsby.dev');
-    expect(link?.href).toBe('mailto:guy@grigsby.dev');
+    expect(link?.text).toBe(addr);
+    expect(link?.href).toBe(`mailto:${addr}`);
   });
 
   it('book prints the booking link', () => {
@@ -112,5 +114,47 @@ describe('runCommand actions', () => {
     const out = runCommand('jess', ctx);
     expect(out.animate).toBeUndefined();
     expect(out.lines.map((l) => l.text).join('\n').toLowerCase()).toContain('run --think');
+  });
+});
+
+describe('runCommand natural language and eggs', () => {
+  it('maps a plain-language contact question to the contact answer', () => {
+    const out = runCommand('how do I reach you?', ctx);
+    const addr = `${ctx.email.user}@${ctx.email.domain}`;
+    const link = out.lines.find((l) => l.className === 'link');
+    expect(link?.href).toBe(`mailto:${addr}`);
+  });
+
+  it('maps "what do you build" to the project list', () => {
+    const text = runCommand('what do you build?', ctx).lines.map((l) => l.text).join(' ');
+    expect(text).toContain('jess');
+  });
+
+  it('owns being deterministic when asked if it is an AI', () => {
+    const text = runCommand('are you an AI?', ctx).lines.map((l) => l.text).join('\n').toLowerCase();
+    expect(text).toContain('no llm');
+  });
+
+  it('sudo hire guy offers the booking link and the email', () => {
+    const out = runCommand('sudo hire guy', ctx);
+    const addr = `${ctx.email.user}@${ctx.email.domain}`;
+    const links = out.lines.filter((l) => l.className === 'link');
+    expect(links.some((l) => l.href === ctx.calLink)).toBe(true);
+    expect(links.some((l) => l.href === `mailto:${addr}`)).toBe(true);
+  });
+
+  it('man guy prints a mock man page', () => {
+    const text = runCommand('man guy', ctx).lines.map((l) => l.text).join('\n');
+    expect(text).toContain('NAME');
+  });
+
+  it('falcon prints ascii flavor', () => {
+    const out = runCommand('falcon', ctx);
+    expect(out.lines.length).toBeGreaterThan(1);
+  });
+
+  it('hello greets and invites questions', () => {
+    const text = runCommand('hello', ctx).lines.map((l) => l.text).join('\n').toLowerCase();
+    expect(text).toContain('ask me anything');
   });
 });

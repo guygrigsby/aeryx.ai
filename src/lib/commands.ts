@@ -1,5 +1,6 @@
 import type { ProjectMeta } from './projects';
 import type { ResearchItem } from './research';
+import { resolveIntent } from './intents';
 
 export interface CommandContext {
   projects: ProjectMeta[];
@@ -93,12 +94,74 @@ function research(ctx: CommandContext): CommandResult {
   return { lines };
 }
 
+function emailAddr(ctx: CommandContext): string {
+  return `${ctx.email.user}@${ctx.email.domain}`;
+}
+
 function contact(ctx: CommandContext): CommandResult {
-  const addr = `${ctx.email.user}@${ctx.email.domain}`;
+  const addr = emailAddr(ctx);
   return {
     lines: [
       { text: 'reach me at', className: 'muted' },
       { text: addr, className: 'link', href: `mailto:${addr}` },
+    ],
+  };
+}
+
+function honesty(): CommandResult {
+  return {
+    lines: [
+      { text: 'No LLM here.', className: 'accent' },
+      { text: 'No API bill, no invented facts, just honest canned answers.' },
+      { text: "Guy builds real agents, he just won't point a hallucinating one at his own resume.", className: 'muted' },
+    ],
+  };
+}
+
+function hire(ctx: CommandContext): CommandResult {
+  const addr = emailAddr(ctx);
+  return {
+    lines: [
+      { text: 'permission granted.', className: 'accent' },
+      { text: 'no password needed, just book a call', className: 'muted' },
+      { text: ctx.calLink, className: 'link', href: ctx.calLink },
+      { text: addr, className: 'link', href: `mailto:${addr}` },
+    ],
+  };
+}
+
+function falcon(): CommandResult {
+  return {
+    lines: [
+      { text: '   /\\', className: 'accent' },
+      { text: '  <  >', className: 'accent' },
+      { text: '   \\/', className: 'accent' },
+      { text: 'a falcon is a trained hunter. so is a good agent.', className: 'muted' },
+    ],
+  };
+}
+
+function man(): CommandResult {
+  return {
+    lines: [
+      { text: 'GUY(1)', className: 'muted' },
+      { text: 'NAME', className: 'accent' },
+      { text: '  guy grigsby, builds agentic software' },
+      { text: 'SYNOPSIS', className: 'accent' },
+      { text: '  guy [--go] [--agents] [--security]' },
+      { text: 'DESCRIPTION', className: 'accent' },
+      { text: '  Software engineer in Denver. Builds agent runtimes and AI tooling,' },
+      { text: '  and helps teams put agentic development and security to work.' },
+      { text: "  see 'ls', 'research', 'contact'.", className: 'muted' },
+    ],
+  };
+}
+
+function hello(): CommandResult {
+  return {
+    lines: [
+      { text: 'ask me anything about Guy.', className: 'accent' },
+      { text: "what he builds, his research, or how to reach him. type 'help' for commands.", className: 'muted' },
     ],
   };
 }
@@ -147,11 +210,30 @@ export function runCommand(input: string, ctx: CommandContext): CommandResult {
       return book(ctx);
     case 'jess':
       return jess(args);
+    case 'honesty':
+      return honesty();
+    case 'hire':
+      return hire(ctx);
+    case 'falcon':
+      return falcon();
+    case 'man':
+      return man();
+    case 'hello':
+      return hello();
     case 'clear':
       return { lines: [], clear: true };
-    default:
+    default: {
+      const resolved = resolveIntent(trimmed);
+      if (resolved && resolved !== cmd) {
+        return runCommand(resolved, ctx);
+      }
       return {
-        lines: [{ text: `command not found: ${name}. try help`, className: 'error' }],
+        lines: [
+          { text: "that one's not in what I know.", className: 'accent' },
+          { text: "I won't fake it, there is no LLM here, so no made-up answers.", className: 'error' },
+          { text: "ask about Guy's work, projects, research, or how to reach him.", className: 'muted' },
+        ],
       };
+    }
   }
 }
