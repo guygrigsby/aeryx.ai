@@ -30,7 +30,7 @@ export const projects: ProjectMeta[] = [
     slug: 'lmkit-go',
     name: 'lmkit-go',
     summary:
-      'From-scratch LLM training in pure Go on an XLA backend, with fused flash attention on both vendors. On NVIDIA it lowers to cuDNN fused SDPA, generalized into a fused-attention abstraction and upstreamed to gomlx/go-xla. On AMD it binds AOTriton flash kernels through an XLA custom-call and a PJRT FFI handler, so the same model trains at 2k context on an 8GB ROCm card.',
+      'From-scratch LLM training in pure Go on an XLA backend, with fused flash attention on both vendors. On NVIDIA it lowers to cuDNN fused SDPA, generalized into a fused-attention abstraction and upstreamed to gomlx/go-xla. On AMD it binds AOTriton flash kernels through an XLA custom-call and a PJRT FFI handler, so all models trains at 2k context on local consumer GPUs.',
     status: 'work in progress',
     repo: 'https://github.com/guygrigsby/lmkit-go',
   },
