@@ -18,6 +18,10 @@ export function mountBoids(canvas: HTMLCanvasElement, count = 60): () => void {
     vy: Math.sin(i) * 2,
   }));
 
+  addEventListener('aeryx:konami', () => {
+    boids = boids.map((b, i) => ({ ...b, vx: Math.cos(i * 1.7) * 12, vy: Math.sin(i * 1.7) * 12 }));
+  });
+
   let raf = 0;
   const loop = () => {
     const opts: BoidOpts = {
