@@ -21,6 +21,18 @@ impression to leave. The limitation is the feature.
 - No fuzzy-match or NLP library. A regex intent table is enough.
 - No visual redesign. The terminal chrome and CSS stay.
 
+## Hard constraint: email stays unscrapeable
+
+The current protection is that the address is never a joined literal. `contact()`
+builds `user + "@" + domain` at runtime from `ctx.email.{user, domain}`, and the
+parts sit unjoined in the page source and in the shipped JS. This must hold.
+
+Rule for this work: no code, test, or doc contains the joined address as a string
+literal. Any response that surfaces the email (the hire egg, anything else) builds
+it the same way `contact()` does, from `ctx.email` parts, at call time. A regex
+test guards it: the built `commands.*.js` bundle must not match a joined
+`user@domain` for the real values.
+
 ## Approach
 
 Reuse the existing engine. `runCommand(input, ctx): CommandResult` in
@@ -73,9 +85,9 @@ Honesty egg (`are you an ai?`):
 > No. No LLM, no API bill, no invented facts. Just honest canned answers. Guy
 > builds real agents, he just won't point a hallucinating one at his own resume.
 
-Hire egg (`sudo hire guy`):
-
-> permission granted. no password needed, just book a call, or guy@grigsby.dev
+Hire egg (`sudo hire guy`): "permission granted. no password needed, just book a
+call, or " followed by the email assembled from `ctx.email` parts (never a joined
+literal), rendered as a `mailto:` link like `contact` does.
 
 Falcon egg: small ASCII bird plus a one-line falconry-to-agent aside.
 
@@ -118,6 +130,10 @@ Prove behavior, not just types.
   returns its response; contact and book still return exact values.
 - `src/scripts/terminal.test.ts`: a natural-language question submitted through the
   input renders the mapped answer; the Konami sequence dispatches `aeryx:konami`.
+- Email guard: assert no source module holds the joined address as a literal, and
+  the hire egg surfaces the email only via `ctx.email` assembly (same path as
+  `contact`). Belt and suspenders: a check over the built bundle for a joined
+  `user@domain` match on the real values.
 
 ## Files touched
 
