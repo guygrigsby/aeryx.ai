@@ -19,15 +19,13 @@ const ctx = {
   <div class="term-input-row">
     <span class="term-prompt">aeryx ~ %</span>
     <input id="input" class="term-input" autocomplete="off" spellcheck="false"
-           aria-label="terminal command input" placeholder="type a command, or tap below" />
+           aria-label="terminal command input" placeholder="ask a question, or tap below" />
   </div>
-  <div class="chips" role="group" aria-label="quick commands">
-    <button class="chip" data-cmd="ls">ls</button>
-    <button class="chip" data-cmd="about">about</button>
-    <button class="chip" data-cmd="research">research</button>
-    <button class="chip" data-cmd="contact">contact</button>
-    <button class="chip" data-cmd="book">book</button>
-    <button class="chip" data-cmd="jess run --think">jess run --think</button>
+  <div class="chips" role="group" aria-label="suggested questions">
+    <button class="chip" data-cmd="what do you build?">what do you build?</button>
+    <button class="chip" data-cmd="how do I reach you?">how do I reach you?</button>
+    <button class="chip" data-cmd="what's your research?">research</button>
+    <button class="chip" data-cmd="are you available?">are you available?</button>
   </div>
 </div>
 
@@ -46,7 +44,7 @@ const ctx = {
     const term = createTerminal({ screen, input, ctx, instant: reduce });
 
     // intro
-    term.submit('help');
+    term.submit('hello');
 
     document.querySelectorAll<HTMLButtonElement>('.chip').forEach((b) => {
       b.addEventListener('click', () => {
