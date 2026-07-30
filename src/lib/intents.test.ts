@@ -8,9 +8,9 @@ describe('resolveIntent', () => {
     }
   });
 
-  it('maps booking phrasings to book', () => {
+  it('maps booking phrasings to contact now that booking is gone', () => {
     for (const s of ['are you available?', 'can we schedule a call', 'book time']) {
-      expect(resolveIntent(s)).toBe('book');
+      expect(resolveIntent(s)).toBe('contact');
     }
   });
 

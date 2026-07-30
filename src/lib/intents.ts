@@ -13,7 +13,8 @@ export const intents: Intent[] = [
   { pattern: /\b(falcon|fly)\b/, command: 'falcon' },
   { pattern: /^(hi|hey|hello|yo|howdy|sup|hiya)\b/, command: 'hello' },
   { pattern: /\b(email|e-mail|reach|contact|hire|get in touch|talk to|message|connect)\b/, command: 'contact' },
-  { pattern: /\b(book|call|meeting|schedule|availab|free to|set up|chat with)/, command: 'book' },
+  // Scheduling phrasings land on contact; there is no booking link to hand out.
+  { pattern: /\b(book|call|meeting|schedule|availab|free to|set up|chat with)/, command: 'contact' },
   { pattern: /\b(research|paper|writeup|write-up|hugging\s?face|\bml\b|model|classifier|attention)/, command: 'research' },
   { pattern: /\b(project|build|building|built|working on|work on|make|made|creating|ship)/, command: 'ls' },
   { pattern: /\b(who|about|background|experience|yourself|resume|cv|bio|do you do|guy)\b/, command: 'about' },

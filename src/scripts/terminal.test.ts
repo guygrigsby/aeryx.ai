@@ -2,14 +2,12 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { createTerminal } from './terminal';
 import { projects } from '../lib/projects';
 import { research, hfProfile } from '../lib/research';
-import { calLink } from '../lib/site';
 
 const ctx = {
   projects,
   research,
   hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
-  calLink,
 };
 
 function setup() {
@@ -51,6 +49,13 @@ describe('createTerminal', () => {
     const a = screen.querySelector('a') as HTMLAnchorElement;
     const addr = `${ctx.email.user}@${ctx.email.domain}`;
     expect(a.getAttribute('href')).toBe(`mailto:${addr}`);
+  });
+
+  it('answers the "are you available?" chip with the email, not a booking link', () => {
+    const { screen, term } = setup();
+    term.submit('are you available?');
+    const hrefs = [...screen.querySelectorAll('a')].map((a) => a.getAttribute('href'));
+    expect(hrefs).toEqual([`mailto:${ctx.email.user}@${ctx.email.domain}`]);
   });
 
   it('runs a command on Enter from the input', () => {

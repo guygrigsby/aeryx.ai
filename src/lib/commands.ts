@@ -7,7 +7,6 @@ export interface CommandContext {
   research: ResearchItem[];
   hfProfile: string;
   email: { user: string; domain: string };
-  calLink: string;
 }
 
 export interface OutputLine {
@@ -33,7 +32,6 @@ function help(): CommandResult {
       { text: '  about         who runs this studio' },
       { text: '  research      AI research and writeups' },
       { text: '  contact       reveal email' },
-      { text: '  book          grab a call' },
       { text: '  jess run --think   watch an agent loop' },
       { text: '  clear         wipe the screen' },
     ],
@@ -123,8 +121,7 @@ function hire(ctx: CommandContext): CommandResult {
   return {
     lines: [
       { text: 'permission granted.', className: 'accent' },
-      { text: 'no password needed, just book a call', className: 'muted' },
-      { text: ctx.calLink, className: 'link', href: ctx.calLink },
+      { text: 'no password needed, just send a note', className: 'muted' },
       { text: addr, className: 'link', href: `mailto:${addr}` },
     ],
   };
@@ -166,15 +163,6 @@ function hello(): CommandResult {
   };
 }
 
-function book(ctx: CommandContext): CommandResult {
-  return {
-    lines: [
-      { text: 'grab a slot', className: 'muted' },
-      { text: ctx.calLink, className: 'link', href: ctx.calLink },
-    ],
-  };
-}
-
 function jess(args: string[]): CommandResult {
   if (args[0] === 'run' && args.includes('--think')) {
     return {
@@ -206,8 +194,6 @@ export function runCommand(input: string, ctx: CommandContext): CommandResult {
       return research(ctx);
     case 'contact':
       return contact(ctx);
-    case 'book':
-      return book(ctx);
     case 'jess':
       return jess(args);
     case 'honesty':

@@ -2,14 +2,12 @@ import { describe, it, expect } from 'vitest';
 import { runCommand, type CommandContext } from './commands';
 import { projects } from './projects';
 import { research, hfProfile } from './research';
-import { calLink } from './site';
 
 const ctx: CommandContext = {
   projects,
   research,
   hfProfile,
   email: { user: 'guy', domain: 'grigsby.dev' },
-  calLink,
 };
 
 describe('runCommand core', () => {
@@ -18,7 +16,7 @@ describe('runCommand core', () => {
     const text = out.lines.map((l) => l.text).join('\n');
     expect(text).toContain('ls');
     expect(text).toContain('contact');
-    expect(text).toContain('book');
+    expect(text).not.toContain('book');
   });
 
   it('signals clear', () => {
@@ -99,10 +97,11 @@ describe('runCommand actions', () => {
     expect(link?.href).toBe(`mailto:${addr}`);
   });
 
-  it('book prints the booking link', () => {
+  it('book falls back to contact instead of a booking link', () => {
     const out = runCommand('book', ctx);
-    const link = out.lines.find((l) => l.className === 'link');
-    expect(link?.href).toBe(calLink);
+    const addr = `${ctx.email.user}@${ctx.email.domain}`;
+    const links = out.lines.filter((l) => l.className === 'link');
+    expect(links.map((l) => l.href)).toEqual([`mailto:${addr}`]);
   });
 
   it('jess run --think requests the agent-loop animation', () => {
@@ -135,12 +134,12 @@ describe('runCommand natural language and eggs', () => {
     expect(text).toContain('no llm');
   });
 
-  it('sudo hire guy offers the booking link and the email', () => {
+  it('sudo hire guy offers the email and nothing to book', () => {
     const out = runCommand('sudo hire guy', ctx);
     const addr = `${ctx.email.user}@${ctx.email.domain}`;
     const links = out.lines.filter((l) => l.className === 'link');
-    expect(links.some((l) => l.href === ctx.calLink)).toBe(true);
-    expect(links.some((l) => l.href === `mailto:${addr}`)).toBe(true);
+    expect(links.map((l) => l.href)).toEqual([`mailto:${addr}`]);
+    expect(out.lines.map((l) => l.text).join('\n')).not.toContain('book');
   });
 
   it('man guy prints a mock man page', () => {
