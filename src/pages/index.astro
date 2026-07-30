@@ -4,7 +4,6 @@ import Sky from '../components/Sky.astro';
 import Terminal from '../components/Terminal.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Research from '../components/Research.astro';
-import { calLink } from '../lib/site';
 ---
 <Base title="aeryx — a studio for agentic software">
   <Sky>
@@ -51,7 +50,6 @@ import { calLink } from '../lib/site';
         <p>Bringing agents into your team, hiring for a project, or just curious what I'm up to?</p>
         <div class="actions">
           <a class="btn" id="email-btn" href="#">email me</a>
-          <a class="btn" href={calLink} target="_blank" rel="noopener">book a call</a>
           <a class="btn ghost" href="https://github.com/guygrigsby" target="_blank" rel="noopener">github</a>
         </div>
       </div>
