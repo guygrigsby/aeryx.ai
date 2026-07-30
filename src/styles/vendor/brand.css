@@ -1,0 +1,328 @@
+/* aeryx brand components. Class contracts shared by every aeryx property.
+   Astro components and Go-generated HTML cannot share code, so the contract
+   is the class name and its rendered result.
+
+   Load order: tokens.css, then this file. tokens.css declares variables only
+   and is safe to load anywhere, including mdBook doc pages. This file emits
+   real rules and belongs only on pages that opt in with class="aeryx" on
+   <body>. */
+
+/* ---- base ---- */
+
+.aeryx {
+  margin: 0;
+  background: var(--aeryx-bg);
+  color: var(--aeryx-text);
+  font: 17px/1.6 var(--aeryx-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.aeryx a {
+  color: var(--aeryx-accent);
+  text-decoration: none;
+  transition: color var(--aeryx-t-micro) var(--aeryx-ease);
+}
+
+.aeryx a:hover {
+  text-decoration: underline;
+}
+
+.aeryx a:focus-visible,
+.aeryx button:focus-visible,
+.aeryx input:focus-visible {
+  outline: none;
+  box-shadow: var(--aeryx-glow-focus);
+  border-radius: var(--aeryx-r-xs);
+}
+
+.aeryx h1,
+.aeryx h2,
+.aeryx h3 {
+  font-family: var(--aeryx-mono);
+  color: var(--aeryx-heading);
+  letter-spacing: var(--aeryx-track-display);
+}
+
+.aeryx h1 {
+  font-size: clamp(2.2rem, 6vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.aeryx h2 {
+  font-size: 1.625rem;
+  font-weight: 700;
+}
+
+.aeryx h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ---- layout ---- */
+
+.aeryx .wrap {
+  max-width: var(--aeryx-w-prose);
+  margin: 0 auto;
+  padding: 0 var(--aeryx-s-5);
+}
+
+.aeryx .wrap.wide {
+  max-width: var(--aeryx-w-wide);
+}
+
+.aeryx .section {
+  padding: var(--aeryx-s-9) 0;
+}
+
+/* ---- skip link ---- */
+
+.aeryx .skip {
+  position: absolute;
+  left: -9999px;
+  padding: var(--aeryx-s-3) var(--aeryx-s-4);
+  font: 600 14px var(--aeryx-mono);
+  background: var(--aeryx-surface);
+  border: 1px solid var(--aeryx-accent);
+  border-radius: var(--aeryx-r-sm);
+  z-index: 10;
+}
+
+.aeryx .skip:focus {
+  left: var(--aeryx-s-4);
+  top: var(--aeryx-s-4);
+}
+
+/* ---- wordmark: the blinking block cursor is the shared signature ---- */
+
+.aeryx .wordmark {
+  display: flex;
+  align-items: center;
+  gap: var(--aeryx-s-3);
+  font: 700 22px var(--aeryx-mono);
+  color: var(--aeryx-text);
+  letter-spacing: var(--aeryx-track-label);
+}
+
+.aeryx .wordmark img {
+  height: 26px;
+  width: auto;
+}
+
+.aeryx .wordmark .cursor {
+  color: var(--aeryx-accent);
+  animation: aeryx-blink 1.2s steps(1) infinite;
+}
+
+@keyframes aeryx-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- eyebrows ---- */
+
+.aeryx .kicker {
+  font: 15px var(--aeryx-mono);
+  color: var(--aeryx-dim);
+  margin: 0 0 var(--aeryx-s-4);
+}
+
+.aeryx .label {
+  font-family: var(--aeryx-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--aeryx-faint);
+}
+
+/* ---- buttons ---- */
+
+.aeryx .btn {
+  display: inline-block;
+  font: 600 15px var(--aeryx-mono);
+  padding: var(--aeryx-s-3) var(--aeryx-s-5);
+  border: 1px solid var(--aeryx-accent);
+  border-radius: var(--aeryx-r-sm);
+  color: var(--aeryx-bg);
+  background: var(--aeryx-accent);
+  cursor: pointer;
+  transition: box-shadow var(--aeryx-t-base) var(--aeryx-ease);
+}
+
+.aeryx .btn:hover {
+  text-decoration: none;
+  box-shadow: var(--aeryx-glow-ambient);
+}
+
+.aeryx .btn.ghost {
+  background: transparent;
+  color: var(--aeryx-accent);
+}
+
+/* ---- terminal chrome ---- */
+
+.aeryx .term {
+  background: var(--aeryx-surface);
+  border: 1px solid var(--aeryx-border);
+  border-radius: var(--aeryx-r-md);
+  margin: var(--aeryx-s-5) 0;
+  overflow: hidden;
+}
+
+.aeryx .term-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: var(--aeryx-s-3) var(--aeryx-s-4);
+  border-bottom: 1px solid var(--aeryx-border);
+}
+
+.aeryx .term-bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--aeryx-border-active);
+  transition: background var(--aeryx-t-base) var(--aeryx-ease);
+}
+
+.aeryx .term:hover .term-bar span:nth-child(1) {
+  background: var(--aeryx-mac-close);
+}
+
+.aeryx .term:hover .term-bar span:nth-child(2) {
+  background: var(--aeryx-mac-min);
+}
+
+.aeryx .term:hover .term-bar span:nth-child(3) {
+  background: var(--aeryx-mac-max);
+}
+
+.aeryx .term-bar em {
+  font: 12px var(--aeryx-mono);
+  font-style: normal;
+  color: var(--aeryx-muted);
+  margin-left: auto;
+}
+
+.aeryx .term pre {
+  margin: 0;
+  padding: var(--aeryx-s-4);
+  overflow-x: auto;
+  font: 14px/1.55 var(--aeryx-mono);
+  color: var(--aeryx-text);
+  scrollbar-width: thin;
+  scrollbar-color: var(--aeryx-border) transparent;
+}
+
+.aeryx .term pre code {
+  font: inherit;
+}
+
+.aeryx .term pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.aeryx .term pre::-webkit-scrollbar-thumb {
+  background: var(--aeryx-border);
+  border-radius: var(--aeryx-r-xs);
+}
+
+.aeryx .term pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---- install / command lines ---- */
+
+.aeryx .install {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aeryx-s-3);
+  margin: var(--aeryx-s-6) 0 0;
+  max-width: 720px;
+}
+
+.aeryx .install p {
+  margin: 0;
+  padding: var(--aeryx-s-3) var(--aeryx-s-4);
+  background: var(--aeryx-surface);
+  border: 1px solid var(--aeryx-border);
+  border-radius: var(--aeryx-r-sm);
+  font: 13px/1.5 var(--aeryx-mono);
+  color: var(--aeryx-text);
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--aeryx-border) transparent;
+}
+
+.aeryx .install .prompt {
+  color: var(--aeryx-accent);
+  margin-right: 9px;
+  user-select: none;
+}
+
+/* ---- claims: a left rule that lights on hover ---- */
+
+.aeryx .claims {
+  list-style: none;
+  padding: 0;
+  margin: var(--aeryx-s-2) 0 0;
+}
+
+.aeryx .claims li {
+  padding: var(--aeryx-s-4) 0 var(--aeryx-s-4) var(--aeryx-s-5);
+  border-left: 2px solid var(--aeryx-dim);
+  transition: border-color var(--aeryx-t-micro) var(--aeryx-ease);
+}
+
+.aeryx .claims li + li {
+  margin-top: var(--aeryx-s-4);
+}
+
+.aeryx .claims li:hover {
+  border-left-color: var(--aeryx-accent);
+}
+
+.aeryx .claims p {
+  margin: 0;
+  font-size: 16px;
+  color: var(--aeryx-muted);
+  max-width: 720px;
+  transition: color var(--aeryx-t-micro) var(--aeryx-ease);
+}
+
+.aeryx .claims li:hover p {
+  color: var(--aeryx-text);
+}
+
+.aeryx .claims code {
+  font-family: var(--aeryx-mono);
+  font-size: 14px;
+  color: var(--aeryx-text);
+}
+
+/* ---- prose ---- */
+
+.aeryx .section > p {
+  color: var(--aeryx-muted);
+  max-width: 640px;
+}
+
+/* ---- quality floor ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .aeryx *,
+  .aeryx *::before,
+  .aeryx *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .aeryx .section {
+    padding: var(--aeryx-s-7) 0;
+  }
+}

@@ -1,6 +1,6 @@
 ---
-// Daybreak gradient frame. Light parallax via a CSS variable updated on scroll;
-// disabled under prefers-reduced-motion (see global.css).
+// Dusk-to-night gradient frame. Light parallax via a CSS variable updated on
+// scroll; disabled under prefers-reduced-motion (see brand.css).
 ---
 <div class="sky">
   <div class="sky-grad" data-parallax></div>
@@ -13,7 +13,7 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(170deg, var(--sky-top) 0%, var(--sky-bottom) 70%);
+    background: linear-gradient(170deg, var(--aeryx-night) 0%, var(--aeryx-dusk) 70%);
     transform: translateY(calc(var(--scroll, 0) * -0.04px));
   }
 </style>

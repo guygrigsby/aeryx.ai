@@ -1,0 +1,91 @@
+/* aeryx brand tokens. Single source of truth for every value the aeryx
+   properties render. Consumers vendor this file verbatim and guard the copy
+   against a recorded hash; never hand-edit a vendored copy.
+
+   Ramp values lean violet rather than neutral because the brand accent is
+   purple and aeryx.ai's sky is dusk. Nothing is pure black: #07070b is the
+   floor, which keeps OLED panels from smearing and gives the surfaces above
+   it somewhere to sit. */
+
+:root {
+  /* ---- surface ramp ---- */
+  --aeryx-950: #07070b;
+  --aeryx-900: #0b0a12;
+  --aeryx-800: #110f1a;
+  --aeryx-700: #171425;
+  --aeryx-600: #221d33;
+  --aeryx-500: #322b47;
+  --aeryx-400: #4a4165;
+  --aeryx-300: #6b6188;
+  --aeryx-200: #9a92ae;
+  --aeryx-100: #c9c4d6;
+  --aeryx-50: #e9e6ef;
+
+  /* ---- accent ---- */
+  --aeryx-accent: #a98fd6;
+  --aeryx-dim: #73548f;
+
+  /* ---- semantic surfaces ---- */
+  --aeryx-bg: var(--aeryx-950);
+  --aeryx-surface: var(--aeryx-800);
+  --aeryx-raised: var(--aeryx-700);
+  --aeryx-border: var(--aeryx-600);
+  --aeryx-border-active: var(--aeryx-500);
+
+  /* ---- semantic text ----
+     muted clears 6:1 on the ramp floor; faint is 3:1 and is restricted to
+     borders, kickers and boid silhouettes, never body copy. */
+  --aeryx-text: #ffffff;
+  --aeryx-heading: var(--aeryx-50);
+  --aeryx-muted: var(--aeryx-200);
+  --aeryx-faint: var(--aeryx-300);
+
+  /* ---- dusk gradient, aeryx.ai only ---- */
+  --aeryx-night: #07070b;
+  --aeryx-dusk: #1b1430;
+
+  /* ---- terminal chrome ---- */
+  --aeryx-mac-close: #ff5f57;
+  --aeryx-mac-min: #febc2e;
+  --aeryx-mac-max: #28c840;
+  --aeryx-error: #ff8d7a;
+
+  /* ---- glow: wide radius, low alpha, never a text-shadow ---- */
+  --aeryx-glow-ambient: 0 0 40px 10px rgba(169, 143, 214, 0.05);
+  --aeryx-glow-hero: 0 0 140px 0 rgba(169, 143, 214, 0.1);
+  --aeryx-glow-focus: 0 0 0 2px rgba(169, 143, 214, 0.6);
+
+  /* ---- radius ---- */
+  --aeryx-r-xs: 4px;
+  --aeryx-r-sm: 6px;
+  --aeryx-r-md: 8px;
+  --aeryx-r-lg: 12px;
+  --aeryx-r-xl: 16px;
+
+  /* ---- spacing ---- */
+  --aeryx-s-1: 4px;
+  --aeryx-s-2: 8px;
+  --aeryx-s-3: 12px;
+  --aeryx-s-4: 16px;
+  --aeryx-s-5: 24px;
+  --aeryx-s-6: 32px;
+  --aeryx-s-7: 48px;
+  --aeryx-s-8: 64px;
+  --aeryx-s-9: 96px;
+  --aeryx-s-10: 128px;
+
+  /* ---- containers ---- */
+  --aeryx-w-prose: 880px;
+  --aeryx-w-wide: 1160px;
+
+  /* ---- type ---- */
+  --aeryx-mono: "Hack", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --aeryx-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --aeryx-track-display: -0.02em;
+  --aeryx-track-label: 0.02em;
+
+  /* ---- motion ---- */
+  --aeryx-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --aeryx-t-micro: 150ms;
+  --aeryx-t-base: 250ms;
+}

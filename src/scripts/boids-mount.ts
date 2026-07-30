@@ -1,5 +1,17 @@
 import { stepBoids, type Boid, type BoidOpts } from '../lib/boids';
 
+/** Mirrors --aeryx-dim. Only used if the stylesheet has not applied yet. */
+export const FLOCK_FALLBACK = '#73548f';
+
+/**
+ * flockColor resolves the flock's silhouette from the brand token rather than
+ * a literal, so recoloring the palette recolors the birds.
+ */
+export function flockColor(el: Element): string {
+  const v = getComputedStyle(el).getPropertyValue('--aeryx-dim').trim();
+  return v || FLOCK_FALLBACK;
+}
+
 export function mountBoids(canvas: HTMLCanvasElement, count = 60): () => void {
   const ctx = canvas.getContext('2d');
   if (!ctx) return () => {};
@@ -30,7 +42,7 @@ export function mountBoids(canvas: HTMLCanvasElement, count = 60): () => void {
     };
     boids = stepBoids(boids, opts);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#5e9dff';
+    ctx.fillStyle = flockColor(canvas);
     for (const b of boids) {
       ctx.save();
       ctx.translate(b.x, b.y);

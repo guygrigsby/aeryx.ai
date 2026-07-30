@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "brand": "cp ../aeryx-brand/brand/*.css src/styles/vendor/ && cp ../aeryx-brand/brand/fonts/* public/fonts/"
   },
   "devDependencies": {
     "astro": "^5.0.0",

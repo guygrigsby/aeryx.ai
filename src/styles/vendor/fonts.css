@@ -1,0 +1,18 @@
+/* aeryx brand typeface. Hack, self-hosted.
+   Kept separate from tokens.css and brand.css so doc pages can take the
+   typeface and the palette without taking the landing page's component rules.
+   Consumers serve the woff2 files at /fonts/. */
+
+@font-face {
+  font-family: "Hack";
+  src: url("/fonts/hack-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Hack";
+  src: url("/fonts/hack-bold.woff2") format("woff2");
+  font-weight: 500 700;
+  font-display: swap;
+}
