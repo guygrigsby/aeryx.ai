@@ -50,13 +50,17 @@ describe('runCommand info', () => {
     for (const p of projects) expect(text).toContain(p.slug);
   });
 
+  // Asserts against the project data rather than copies of it, so renaming a
+  // project cannot break this test.
   it('cat <project> prints that project name, summary, and repo link', () => {
+    const jess = projects.find((p) => p.slug === 'jess');
+    expect(jess).toBeDefined();
     const out = runCommand('cat jess', ctx);
     const text = out.lines.map((l) => l.text).join('\n');
-    expect(text).toContain('Jess');
-    expect(text).toContain('Streaming agent harness');
+    expect(text).toContain(jess!.name);
+    expect(text).toContain(jess!.summary);
     const link = out.lines.find((l) => l.className === 'link');
-    expect(link?.href).toBe('https://github.com/guygrigsby/jess');
+    expect(link?.href).toBe(jess!.repo);
   });
 
   it('cat with an unknown project errors', () => {
