@@ -9,14 +9,14 @@ const root = join(here, '..', '..', '..');
 
 // The aeryx-brand commit these files were fetched from. Kept in step with
 // `config.brandRef` in package.json, which is what `npm run brand` fetches.
-const BRAND_REF = 'be2eed1623ccd2ae05a55c0c64c80ed1d58bc61e';
+const BRAND_REF = 'f7f1e798e8dbde869e6e0c74e2818fdadad1762d';
 
 // Recorded from aeryx-brand. These files are vendored, never hand-edited.
 // To take a brand change: bump config.brandRef, `npm run brand`, then record
 // the new ref and hashes here in the same commit.
 const VENDORED = {
-  'src/styles/vendor/tokens.css': 'c90e84343130dbe4211732c25a14802f1884ef9c6daaf71d78c96497d0572ee0',
-  'src/styles/vendor/brand.css': '801ed10627e631f7bd54bc2a84871abb20836c9cae5a658bbb9c339c828c83e6',
+  'src/styles/vendor/tokens.css': '912c9596173109e4a97b985f098b91c4063c37fb75a6b6ddd392c6f6457914e8',
+  'src/styles/vendor/brand.css': '3e05b7087141e1de0c5cb4e6741bf2419715485a3cefb1c2650b5f73b1c8e492',
   'src/styles/vendor/fonts.css': '07d9da3710c06ccce6c6791dde1db2610e7e9cb2366b6176c278132038a0f296',
 };
 

@@ -2,47 +2,58 @@
    properties render. Consumers vendor this file verbatim and guard the copy
    against a recorded hash; never hand-edit a vendored copy.
 
-   Ramp values lean violet rather than neutral because the brand accent is
-   purple and aeryx.ai's sky is dusk. Nothing is pure black: #07070b is the
-   floor, which keeps OLED panels from smearing and gives the surfaces above
-   it somewhere to sit. */
+   The discipline, taken from scanduit: grayscale everything, the accent is the
+   only color. Neutrals carry no hue of their own, which is what makes a single
+   purple land as hard as it does. Nothing is pure black; #08090b is the floor,
+   which keeps OLED panels from smearing and leaves the surfaces above it room
+   to sit. */
 
 :root {
-  /* ---- surface ramp ---- */
-  --aeryx-950: #07070b;
-  --aeryx-900: #0b0a12;
-  --aeryx-800: #110f1a;
-  --aeryx-700: #171425;
-  --aeryx-600: #221d33;
-  --aeryx-500: #322b47;
-  --aeryx-400: #4a4165;
-  --aeryx-300: #6b6188;
-  --aeryx-200: #9a92ae;
-  --aeryx-100: #c9c4d6;
-  --aeryx-50: #e9e6ef;
+  /* ---- surface ramp: cool neutral, no hue of its own ---- */
+  --aeryx-950: #08090b;
+  --aeryx-900: #0d0f13;
+  --aeryx-800: #12151b;
+  --aeryx-700: #171b23;
+  --aeryx-600: #1c2027;
+  --aeryx-500: #262b34;
+  --aeryx-400: #3a414c;
+  --aeryx-300: #5b636e;
+  --aeryx-200: #79818c;
+  --aeryx-100: #b9c0c9;
+  --aeryx-50: #dfe3e8;
 
-  /* ---- accent ---- */
+  /* ---- the one color ----
+     hot is the emissive core: lit glyphs, the middle of a beam, the point a
+     highlight is brightest. dim is the same color at rest. */
   --aeryx-accent: #a98fd6;
+  --aeryx-hot: #ede4fa;
   --aeryx-dim: #73548f;
 
   /* ---- semantic surfaces ---- */
   --aeryx-bg: var(--aeryx-950);
-  --aeryx-surface: var(--aeryx-800);
+  --aeryx-surface: var(--aeryx-900);
   --aeryx-raised: var(--aeryx-700);
   --aeryx-border: var(--aeryx-600);
   --aeryx-border-active: var(--aeryx-500);
 
   /* ---- semantic text ----
-     muted clears 6:1 on the ramp floor; faint is 3:1 and is restricted to
-     borders, kickers and boid silhouettes, never body copy. */
-  --aeryx-text: #ffffff;
-  --aeryx-heading: var(--aeryx-50);
+     muted clears 4.5:1 on the ramp floor; faint is a 3:1 value restricted to
+     borders, eyebrows and decorative marks, never body copy. */
+  --aeryx-text: #dfe3e8;
+  --aeryx-bright: #ffffff;
+  --aeryx-heading: var(--aeryx-bright);
   --aeryx-muted: var(--aeryx-200);
   --aeryx-faint: var(--aeryx-300);
 
-  /* ---- dusk gradient, aeryx.ai only ---- */
-  --aeryx-night: #07070b;
-  --aeryx-dusk: #1b1430;
+  /* ---- inverted chip: a light tag on a dark page ---- */
+  --aeryx-chip: #e9ebee;
+  --aeryx-chip-ink: #15171a;
+
+  /* ---- dusk gradient, aeryx.ai only ----
+     The one place a neutral gives way, because it is a sky and not a surface.
+     Restrained on purpose so it reads as night, not as a purple wash. */
+  --aeryx-night: #08090b;
+  --aeryx-dusk: #15121f;
 
   /* ---- terminal chrome ---- */
   --aeryx-mac-close: #ff5f57;
@@ -50,10 +61,17 @@
   --aeryx-mac-max: #28c840;
   --aeryx-error: #ff8d7a;
 
-  /* ---- glow: wide radius, low alpha, never a text-shadow ---- */
+  /* ---- glow ----
+     ambient and hero are wide and faint, for surfaces that catch light.
+     beam is two-stop, a tight hot core inside a wide halo, for anything that
+     emits: a laser, a lit rule, a cursor. Never a text-shadow on body copy. */
   --aeryx-glow-ambient: 0 0 40px 10px rgba(169, 143, 214, 0.05);
   --aeryx-glow-hero: 0 0 140px 0 rgba(169, 143, 214, 0.1);
+  --aeryx-glow-beam: 0 0 6px 1px rgba(169, 143, 214, 0.9), 0 0 28px 8px rgba(169, 143, 214, 0.35);
   --aeryx-glow-focus: 0 0 0 2px rgba(169, 143, 214, 0.6);
+
+  /* ---- scanline texture: 1.2% white every 4th pixel row ---- */
+  --aeryx-scanlines: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.012) 3px 4px);
 
   /* ---- radius ---- */
   --aeryx-r-xs: 4px;
@@ -78,11 +96,15 @@
   --aeryx-w-prose: 880px;
   --aeryx-w-wide: 1160px;
 
-  /* ---- type ---- */
+  /* ---- type ----
+     Small type is tracked out hard, the way a scanner label is. Display type
+     is tracked in. */
   --aeryx-mono: "Hack", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --aeryx-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
   --aeryx-track-display: -0.02em;
-  --aeryx-track-label: 0.02em;
+  --aeryx-track-tight: 0.02em;
+  --aeryx-track-label: 0.14em;
+  --aeryx-track-wide: 0.18em;
 
   /* ---- motion ---- */
   --aeryx-ease: cubic-bezier(0.16, 1, 0.3, 1);

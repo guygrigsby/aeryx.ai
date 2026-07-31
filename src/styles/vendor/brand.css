@@ -17,6 +17,11 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.aeryx ::selection {
+  background: var(--aeryx-text);
+  color: var(--aeryx-bg);
+}
+
 .aeryx a {
   color: var(--aeryx-accent);
   text-decoration: none;
@@ -101,7 +106,7 @@
   gap: var(--aeryx-s-3);
   font: 700 22px var(--aeryx-mono);
   color: var(--aeryx-text);
-  letter-spacing: var(--aeryx-track-label);
+  letter-spacing: var(--aeryx-track-tight);
 }
 
 .aeryx .wordmark img {
@@ -132,7 +137,7 @@
   font-family: var(--aeryx-mono);
   font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--aeryx-track-label);
   color: var(--aeryx-faint);
 }
 
@@ -300,6 +305,102 @@
   font-family: var(--aeryx-mono);
   font-size: 14px;
   color: var(--aeryx-text);
+}
+
+/* ---- tag: an inverted light label on a dark page ----
+   From scanduit's identity chip. Named .tag rather than .chip because
+   aeryx.ai's terminal already owns .chip for its suggestion pills. */
+
+.aeryx .tag {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px 5px;
+  background: var(--aeryx-chip);
+  color: var(--aeryx-chip-ink);
+  font-family: var(--aeryx-mono);
+  font-size: 0.56rem;
+  letter-spacing: var(--aeryx-track-label);
+  line-height: 1.5;
+}
+
+.aeryx .tag b {
+  font-weight: 700;
+  letter-spacing: var(--aeryx-track-wide);
+}
+
+/* ---- crop marks ----
+   Registration corners, borrowed from the scanner's vocabulary. Place four
+   inside any position:relative container. */
+
+.aeryx .tick {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.aeryx .tick.tl {
+  top: var(--aeryx-s-2);
+  left: var(--aeryx-s-2);
+  border-top: 1px solid var(--aeryx-faint);
+  border-left: 1px solid var(--aeryx-faint);
+}
+
+.aeryx .tick.tr {
+  top: var(--aeryx-s-2);
+  right: var(--aeryx-s-2);
+  border-top: 1px solid var(--aeryx-faint);
+  border-right: 1px solid var(--aeryx-faint);
+}
+
+.aeryx .tick.bl {
+  bottom: var(--aeryx-s-2);
+  left: var(--aeryx-s-2);
+  border-bottom: 1px solid var(--aeryx-faint);
+  border-left: 1px solid var(--aeryx-faint);
+}
+
+.aeryx .tick.br {
+  bottom: var(--aeryx-s-2);
+  right: var(--aeryx-s-2);
+  border-bottom: 1px solid var(--aeryx-faint);
+  border-right: 1px solid var(--aeryx-faint);
+}
+
+/* ---- beam: anything that emits ----
+   A hot core inside a wide halo. Vertical by default, .across for a rule that
+   travels horizontally. */
+
+.aeryx .beam {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--aeryx-accent) 8%,
+    var(--aeryx-hot) 50%,
+    var(--aeryx-accent) 92%,
+    transparent
+  );
+  box-shadow: var(--aeryx-glow-beam);
+}
+
+.aeryx .beam.across {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--aeryx-accent) 10%,
+    var(--aeryx-hot) 50%,
+    var(--aeryx-accent) 90%,
+    transparent
+  );
+}
+
+/* ---- scanlines: a surface that looks read rather than printed ---- */
+
+.aeryx .scanlines {
+  background-image: var(--aeryx-scanlines);
 }
 
 /* ---- prose ---- */
