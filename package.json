@@ -9,7 +9,10 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
-    "brand": "cp ../aeryx-brand/brand/*.css src/styles/vendor/ && cp ../aeryx-brand/brand/fonts/* public/fonts/"
+    "brand": "for f in tokens.css brand.css fonts.css; do curl -fsSL --create-dirs -o src/styles/vendor/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/$f || exit 1; done && for f in hack-regular.woff2 hack-bold.woff2 LICENSE.md; do curl -fsSL --create-dirs -o public/fonts/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/fonts/$f || exit 1; done"
+  },
+  "config": {
+    "brandRef": "be2eed1623ccd2ae05a55c0c64c80ed1d58bc61e"
   },
   "devDependencies": {
     "astro": "^5.0.0",
