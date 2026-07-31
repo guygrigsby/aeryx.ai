@@ -51,6 +51,22 @@ describe('vendored brand assets', () => {
     });
   }
 
+  // The browser chrome color is a copy of the ramp floor living outside CSS,
+  // so it silently goes stale whenever the palette moves.
+  it('keeps the theme-color meta in step with the ramp floor', () => {
+    const tokens = readFileSync(join(root, 'src/styles/vendor/tokens.css'), 'utf8');
+    const floor = tokens.match(/--aeryx-950:\s*(#[0-9a-f]{6})/)?.[1];
+    expect(floor, 'vendored tokens.css declares no --aeryx-950').toBeTruthy();
+
+    const layout = readFileSync(join(root, 'src/layouts/Base.astro'), 'utf8');
+    const meta = layout.match(/name="theme-color"\s+content="(#[0-9a-f]{6})"/)?.[1];
+    expect(meta, 'src/layouts/Base.astro has no theme-color meta').toBeTruthy();
+    expect(meta,
+      `Base.astro sets theme-color ${meta} but the ramp floor --aeryx-950 is ${floor}.\n` +
+      `Fix: update the meta in src/layouts/Base.astro to match.`,
+    ).toBe(floor);
+  });
+
   it('serves every font face declared in fonts.css', () => {
     const css = readFileSync(join(root, 'src/styles/vendor/fonts.css'), 'utf8');
     const urls = [...css.matchAll(/url\("([^"]+)"\)/g)].map((m) => m[1]);
