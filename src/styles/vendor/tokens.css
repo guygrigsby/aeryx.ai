@@ -37,13 +37,19 @@
   --aeryx-border-active: var(--aeryx-500);
 
   /* ---- semantic text ----
-     muted clears 4.5:1 on the ramp floor; faint is a 3:1 value restricted to
-     borders, eyebrows and decorative marks, never body copy. */
+     No text token sits below AA. Prose is not dimmed: gray body copy is hard
+     to read, so secondary text is separated by size, tracking and case rather
+     than by fading it out. muted and faint stay as names for intent, not as
+     lower contrast. Anything dimmer than this is a mark or a border and must
+     never be named as text. */
   --aeryx-text: #dfe3e8;
   --aeryx-bright: #ffffff;
   --aeryx-heading: var(--aeryx-bright);
-  --aeryx-muted: var(--aeryx-200);
-  --aeryx-faint: var(--aeryx-300);
+  --aeryx-muted: var(--aeryx-50);
+  --aeryx-faint: var(--aeryx-50);
+
+  /* ---- decorative marks: rules, crop marks, anything that is not read ---- */
+  --aeryx-mark: var(--aeryx-400);
 
   /* ---- inverted chip: a light tag on a dark page ---- */
   --aeryx-chip: #e9ebee;

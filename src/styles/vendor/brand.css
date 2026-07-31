@@ -32,6 +32,12 @@
   text-decoration: underline;
 }
 
+/* The browser default placeholder is a gray the brand does not permit. */
+.aeryx ::placeholder {
+  color: var(--aeryx-text);
+  opacity: 0.75;
+}
+
 .aeryx a:focus-visible,
 .aeryx button:focus-visible,
 .aeryx input:focus-visible {
@@ -129,7 +135,7 @@
 
 .aeryx .kicker {
   font: 15px var(--aeryx-mono);
-  color: var(--aeryx-dim);
+  color: var(--aeryx-accent);
   margin: 0 0 var(--aeryx-s-4);
 }
 
@@ -345,29 +351,29 @@
 .aeryx .tick.tl {
   top: var(--aeryx-s-2);
   left: var(--aeryx-s-2);
-  border-top: 1px solid var(--aeryx-faint);
-  border-left: 1px solid var(--aeryx-faint);
+  border-top: 1px solid var(--aeryx-mark);
+  border-left: 1px solid var(--aeryx-mark);
 }
 
 .aeryx .tick.tr {
   top: var(--aeryx-s-2);
   right: var(--aeryx-s-2);
-  border-top: 1px solid var(--aeryx-faint);
-  border-right: 1px solid var(--aeryx-faint);
+  border-top: 1px solid var(--aeryx-mark);
+  border-right: 1px solid var(--aeryx-mark);
 }
 
 .aeryx .tick.bl {
   bottom: var(--aeryx-s-2);
   left: var(--aeryx-s-2);
-  border-bottom: 1px solid var(--aeryx-faint);
-  border-left: 1px solid var(--aeryx-faint);
+  border-bottom: 1px solid var(--aeryx-mark);
+  border-left: 1px solid var(--aeryx-mark);
 }
 
 .aeryx .tick.br {
   bottom: var(--aeryx-s-2);
   right: var(--aeryx-s-2);
-  border-bottom: 1px solid var(--aeryx-faint);
-  border-right: 1px solid var(--aeryx-faint);
+  border-bottom: 1px solid var(--aeryx-mark);
+  border-right: 1px solid var(--aeryx-mark);
 }
 
 /* ---- beam: anything that emits ----

@@ -12,7 +12,7 @@
     "brand": "for f in tokens.css brand.css fonts.css; do curl -fsSL --create-dirs -o src/styles/vendor/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/$f || exit 1; done && for f in hack-regular.woff2 hack-bold.woff2 LICENSE.md; do curl -fsSL --create-dirs -o public/fonts/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/fonts/$f || exit 1; done"
   },
   "config": {
-    "brandRef": "f7f1e798e8dbde869e6e0c74e2818fdadad1762d"
+    "brandRef": "1bc7d16cd49b25b97553a7d31a20aaae76a2324b"
   },
   "devDependencies": {
     "astro": "^5.0.0",

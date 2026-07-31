@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { createHash } from 'node:crypto';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -9,14 +9,14 @@ const root = join(here, '..', '..', '..');
 
 // The aeryx-brand commit these files were fetched from. Kept in step with
 // `config.brandRef` in package.json, which is what `npm run brand` fetches.
-const BRAND_REF = 'f7f1e798e8dbde869e6e0c74e2818fdadad1762d';
+const BRAND_REF = '1bc7d16cd49b25b97553a7d31a20aaae76a2324b';
 
 // Recorded from aeryx-brand. These files are vendored, never hand-edited.
 // To take a brand change: bump config.brandRef, `npm run brand`, then record
 // the new ref and hashes here in the same commit.
 const VENDORED = {
-  'src/styles/vendor/tokens.css': '912c9596173109e4a97b985f098b91c4063c37fb75a6b6ddd392c6f6457914e8',
-  'src/styles/vendor/brand.css': '3e05b7087141e1de0c5cb4e6741bf2419715485a3cefb1c2650b5f73b1c8e492',
+  'src/styles/vendor/tokens.css': 'dff4a3a3aeeaaffce4801d5f4334c0b0bc5294d9a641042ca480a028238ceb6f',
+  'src/styles/vendor/brand.css': 'df5dcee908da88912cbe6b4d255ea979dc48abad116b507e79d513fdaecdc55a',
   'src/styles/vendor/fonts.css': '07d9da3710c06ccce6c6791dde1db2610e7e9cb2366b6176c278132038a0f296',
 };
 
@@ -65,6 +65,32 @@ describe('vendored brand assets', () => {
       `Base.astro sets theme-color ${meta} but the ramp floor --aeryx-950 is ${floor}.\n` +
       `Fix: update the meta in src/layouts/Base.astro to match.`,
     ).toBe(floor);
+  });
+
+  // The brand guards its own stylesheet; this covers the component styles that
+  // live here. Prose is not dimmed on any aeryx surface.
+  it('paints no text with a surface, border or mark token', () => {
+    const banned = /^--aeryx-(mark|dim|border|border-active|surface|raised|night|dusk|\d{2,3})$/;
+    const dirs = ['src/components', 'src/pages', 'src/layouts'];
+    const offenders: string[] = [];
+    for (const dir of dirs) {
+      for (const f of readdirSync(join(root, dir))) {
+        if (!f.endsWith('.astro')) continue;
+        const rel = `${dir}/${f}`;
+        readFileSync(join(root, rel), 'utf8').split('\n').forEach((line, i) => {
+          if (!/(^|[;{\s])color:/.test(line)) return;
+          const m = line.match(/var\(\s*(--aeryx-[a-zA-Z0-9-]+)/);
+          if (m && m[1] !== '--aeryx-bg' && m[1] !== '--aeryx-chip-ink' && banned.test(m[1])) {
+            offenders.push(`${rel}:${i + 1} uses ${m[1]}`);
+          }
+        });
+      }
+    }
+    expect(offenders,
+      `These rules paint text with a surface, border or mark token:\n${offenders.join('\n')}\n` +
+      `Fix: use --aeryx-text, --aeryx-muted, --aeryx-faint or --aeryx-accent. ` +
+      `Separate secondary text by size and tracking, not by dimming it.`,
+    ).toEqual([]);
   });
 
   it('serves every font face declared in fonts.css', () => {
