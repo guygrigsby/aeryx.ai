@@ -41,4 +41,4 @@ export const footerLinks: SiteLink[] = [
 export const apps: string[] = ['loggit', 'Just Next'];
 
 /** The date the current privacy policy took effect. */
-export const policyEffective = '12 August 2026';
+export const policyEffective = '13 August 2026';

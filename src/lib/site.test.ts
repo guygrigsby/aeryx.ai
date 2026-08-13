@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { apps, contactAddress, footerLinks, supportAddress } from './site';
+import { apps, contactAddress, footerLinks, legalName, supportAddress } from './site';
 
 describe('site contact', () => {
   it('joins the support address from its parts', () => {
@@ -62,6 +62,11 @@ describe('privacy policy page', () => {
 
   it('names every app the policy covers', () => {
     for (const app of apps) expect(page).toContain(app);
+  });
+
+  it('names the company behind the apps, so the controller is identifiable', () => {
+    expect(page).toContain('legalName');
+    expect(legalName).toBe('Aeryx Industries LLC');
   });
 
   it('carries the support address in static markup, not assembled by script', () => {
