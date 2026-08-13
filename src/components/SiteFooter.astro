@@ -1,0 +1,43 @@
+---
+import { footerLinks, studio } from '../lib/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <nav aria-label="site">
+      <ul>
+        {footerLinks.map((l) => (
+          <li>
+            {l.external
+              ? <a href={l.href} target="_blank" rel="noopener">{l.label}</a>
+              : <a href={l.href}>{l.label}</a>}
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <p class="copy">© {year} {studio}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    /* Above the Sky backdrop, which is fixed and overhangs the page bottom. */
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--aeryx-border);
+    padding: var(--aeryx-s-5) 0;
+    font-family: var(--aeryx-mono);
+    font-size: 0.85rem;
+  }
+  .site-footer .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--aeryx-s-3);
+  }
+  ul { list-style: none; display: flex; flex-wrap: wrap; gap: var(--aeryx-s-4); }
+  a { color: var(--aeryx-muted); text-decoration: none; }
+  a:hover { color: var(--aeryx-accent); }
+  .copy { color: var(--aeryx-faint); }
+</style>

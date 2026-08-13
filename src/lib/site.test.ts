@@ -32,6 +32,24 @@ describe('footer links', () => {
   });
 });
 
+// The Sky gradient is fixed and overhangs the page bottom, so without these two
+// declarations it paints and hit-tests over the footer and swallows its links.
+// jsdom has no layout or stacking, so the real check was a browser click and
+// this only guards the fix from being deleted.
+describe('footer sits above the Sky backdrop', () => {
+  const read = (rel: string) => readFileSync(join(import.meta.dirname, '..', rel), 'utf8');
+
+  it('keeps the gradient out of the hit test', () => {
+    expect(read('components/Sky.astro')).toMatch(/pointer-events:\s*none/);
+  });
+
+  it('gives the footer its own stacking context', () => {
+    const css = read('components/SiteFooter.astro');
+    expect(css).toMatch(/position:\s*relative/);
+    expect(css).toMatch(/z-index:\s*1/);
+  });
+});
+
 // Apple rejects a policy that does not answer these, so they are asserted
 // against the page source rather than left to a later reread.
 describe('privacy policy page', () => {

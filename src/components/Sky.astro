@@ -10,11 +10,19 @@
 <style>
   .sky { position: relative; isolation: isolate; }
   .sky-grad {
+    /* Overhang and clamp are a pair: the parallax slides this up by 4% of the
+       scroll offset, so it has to be taller than the largest shift or a long
+       page runs the gradient off its own bottom edge and shows bare body
+       colour above the footer. */
+    --sky-parallax-max: 240px;
     position: fixed;
-    inset: 0;
+    inset: calc(-1 * var(--sky-parallax-max)) 0;
     z-index: -1;
+    /* Decoration only. Without this it overhangs the footer and eats its
+       clicks, because .sky is positioned and so hit-tests above it. */
+    pointer-events: none;
     background: linear-gradient(170deg, var(--aeryx-night) 0%, var(--aeryx-dusk) 70%);
-    transform: translateY(calc(var(--scroll, 0) * -0.04px));
+    transform: translateY(max(calc(var(--scroll, 0) * -0.04px), calc(-1 * var(--sky-parallax-max))));
   }
 </style>
 

@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
+import SiteFooter from '../components/SiteFooter.astro';
 interface Props { title: string; description?: string; }
-const { title, description = 'A studio for agentic software, by Guy Grigsby.' } = Astro.props;
+const { title, description = 'A studio for agentic software.' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -17,5 +18,6 @@ const { title, description = 'A studio for agentic software, by Guy Grigsby.' } 
   </head>
   <body class="aeryx">
     <slot />
+    <SiteFooter />
   </body>
 </html>
