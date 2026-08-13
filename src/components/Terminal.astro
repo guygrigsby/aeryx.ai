@@ -1,13 +1,15 @@
 ---
 import { projects } from '../lib/projects';
 import { research, hfProfile } from '../lib/research';
-import { supportEmail } from '../lib/site';
+import { contactEmail } from '../lib/site';
 
+// The terminal answers "how do I reach you", which is the same question the
+// Let's talk button answers, so it hands out the same address.
 const ctx = {
   projects,
   research,
   hfProfile,
-  email: supportEmail,
+  email: contactEmail,
 };
 ---
 <div class="term" role="region" aria-label="interactive terminal">

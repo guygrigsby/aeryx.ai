@@ -2,13 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { runCommand, type CommandContext } from './commands';
 import { projects } from './projects';
 import { research, hfProfile } from './research';
-import { supportEmail } from './site';
+import { contactEmail } from './site';
 
 const ctx: CommandContext = {
   projects,
   research,
   hfProfile,
-  email: supportEmail,
+  email: contactEmail,
 };
 
 describe('runCommand core', () => {
