@@ -1,6 +1,6 @@
 # aeryx.ai
 
-Single-page studio site for aeryx.ai / grigsby.dev. Astro, static, deployed to Cloudflare Pages.
+Studio site for aeryx.ai / grigsby.dev, plus the privacy policy the App Store listings point at. Astro, static, deployed to Cloudflare Pages.
 
 ## Develop
 
@@ -22,7 +22,8 @@ npm run build    # static build to dist/
 
 ## Notes
 
-- Project data lives in `src/lib/projects.ts` (single source of truth).
-- The email address is never in static HTML; it is assembled in JS at runtime.
+- Project data lives in `src/lib/projects.ts`, contact and footer links in `src/lib/site.ts` (single sources of truth).
+- Contact is the `support@aeryx.ai` role address, in plain markup so a policy link works without JS. Cloudflare Scrape Shield obfuscates it at the edge. `src/lib/email-guard.test.ts` keeps the personal address from coming back.
+- `/privacy` covers the site and the iOS apps listed in `site.ts`. Adding an app to that list fails the tests until the policy names it.
 - All motion respects `prefers-reduced-motion`.
 - The 404 page hides a boids flock easter egg.
