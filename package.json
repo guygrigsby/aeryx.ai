@@ -15,11 +15,12 @@
     "brandRef": "1bc7d16cd49b25b97553a7d31a20aaae76a2324b"
   },
   "devDependencies": {
-    "astro": "^5.0.0",
     "@astrojs/check": "^0.9.0",
+    "@types/node": "^26.2.0",
+    "astro": "^5.0.0",
+    "jsdom": "^25.0.0",
     "typescript": "^5.6.0",
     "vitest": "^2.1.0",
-    "jsdom": "^25.0.0",
     "wrangler": "^4.0.0"
   }
 }
