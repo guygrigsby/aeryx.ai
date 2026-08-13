@@ -1,8 +1,9 @@
 /** Site-wide identity, contact and footer links. Single source of truth, the
  *  way projects.ts is for projects. */
 
-/** The studio, as the site and the App Store listings name it. */
-export const studio = 'aeryx';
+/** The registered business behind the aeryx brand. Used for the copyright
+ *  line, which names the entity, not the mark. */
+export const legalName = 'Aeryx Industries LLC';
 
 /** Support address, kept as parts so the joined form is built only where it is
  *  rendered. Unlike the old personal address this one is a role account and is
