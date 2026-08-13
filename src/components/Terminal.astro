@@ -1,14 +1,13 @@
 ---
 import { projects } from '../lib/projects';
 import { research, hfProfile } from '../lib/research';
+import { supportEmail } from '../lib/site';
 
-// Email parts stay separate; they are only joined inside the bundled JS at
-// runtime, so the assembled address never appears in static HTML.
 const ctx = {
   projects,
   research,
   hfProfile,
-  email: { user: 'guy', domain: 'grigsby.dev' },
+  email: supportEmail,
 };
 ---
 <div class="term" role="region" aria-label="interactive terminal">

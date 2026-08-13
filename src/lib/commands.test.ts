@@ -2,12 +2,13 @@ import { describe, it, expect } from 'vitest';
 import { runCommand, type CommandContext } from './commands';
 import { projects } from './projects';
 import { research, hfProfile } from './research';
+import { supportEmail } from './site';
 
 const ctx: CommandContext = {
   projects,
   research,
   hfProfile,
-  email: { user: 'guy', domain: 'grigsby.dev' },
+  email: supportEmail,
 };
 
 describe('runCommand core', () => {
@@ -158,6 +159,6 @@ describe('runCommand natural language and eggs', () => {
 
   it('hello greets and invites questions', () => {
     const text = runCommand('hello', ctx).lines.map((l) => l.text).join('\n').toLowerCase();
-    expect(text).toContain('ask me anything');
+    expect(text).toContain('ask us anything');
   });
 });

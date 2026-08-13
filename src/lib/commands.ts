@@ -68,10 +68,10 @@ function cat(args: string[], ctx: CommandContext): CommandResult {
 function about(): CommandResult {
   return {
     lines: [
-      { text: 'Guy Grigsby', className: 'accent' },
-      { text: 'Software engineer and AI researcher, in Denver.' },
-      { text: 'Building agentic systems and AI tooling in Go.' },
-      { text: 'The aeryx projects below are what I am shaping now.' },
+      { text: 'aeryx', className: 'accent' },
+      { text: 'A studio for agentic software, in Denver.' },
+      { text: 'We build agentic systems and AI tooling in Go.' },
+      { text: 'The projects below are what we are shaping now.' },
     ],
   };
 }
@@ -100,7 +100,7 @@ function contact(ctx: CommandContext): CommandResult {
   const addr = emailAddr(ctx);
   return {
     lines: [
-      { text: 'reach me at', className: 'muted' },
+      { text: 'reach us at', className: 'muted' },
       { text: addr, className: 'link', href: `mailto:${addr}` },
     ],
   };
@@ -111,7 +111,7 @@ function honesty(): CommandResult {
     lines: [
       { text: 'No LLM here.', className: 'accent' },
       { text: 'No API bill, no invented facts, just honest canned answers.' },
-      { text: "Guy builds real agents, he just won't point a hallucinating one at his own resume.", className: 'muted' },
+      { text: "We build real agents. We just won't point a hallucinating one at our own site.", className: 'muted' },
     ],
   };
 }
@@ -141,14 +141,14 @@ function falcon(): CommandResult {
 function man(): CommandResult {
   return {
     lines: [
-      { text: 'GUY(1)', className: 'muted' },
+      { text: 'AERYX(1)', className: 'muted' },
       { text: 'NAME', className: 'accent' },
-      { text: '  guy grigsby, builds agentic software' },
+      { text: '  aeryx, builds agentic software' },
       { text: 'SYNOPSIS', className: 'accent' },
-      { text: '  guy [--go] [--agents] [--security]' },
+      { text: '  aeryx [--go] [--agents] [--security]' },
       { text: 'DESCRIPTION', className: 'accent' },
-      { text: '  Software engineer in Denver. Builds agent runtimes and AI tooling,' },
-      { text: '  and helps teams put agentic development and security to work.' },
+      { text: '  A studio in Denver. We build agent runtimes and AI tooling,' },
+      { text: '  and help teams put agentic development and security to work.' },
       { text: "  see 'ls', 'research', 'contact'.", className: 'muted' },
     ],
   };
@@ -157,8 +157,8 @@ function man(): CommandResult {
 function hello(): CommandResult {
   return {
     lines: [
-      { text: 'ask me anything about Guy.', className: 'accent' },
-      { text: "what he builds, his research, or how to reach him. type 'help' for commands.", className: 'muted' },
+      { text: 'ask us anything about aeryx.', className: 'accent' },
+      { text: "what we build, our research, or how to reach us. type 'help' for commands.", className: 'muted' },
     ],
   };
 }
@@ -217,7 +217,7 @@ export function runCommand(input: string, ctx: CommandContext): CommandResult {
         lines: [
           { text: "that one's not in what I know.", className: 'accent' },
           { text: "Not going to lie. I'm not an LLM." },
-          { text: "ask about Guy's work, projects, research, or how to reach him.", className: 'muted' },
+          { text: 'ask about our work, projects, research, or how to reach us.', className: 'muted' },
         ],
       };
     }

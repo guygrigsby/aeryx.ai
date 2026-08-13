@@ -4,14 +4,16 @@ import Sky from '../components/Sky.astro';
 import Terminal from '../components/Terminal.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Research from '../components/Research.astro';
+import { supportAddress } from '../lib/site';
+const addr = supportAddress();
 ---
 <Base title="aeryx — a studio for agentic software">
   <Sky>
     <header class="hero section">
       <div class="wrap">
-        <p class="label">Guy Grigsby · aeryx</p>
+        <p class="label">aeryx</p>
         <h1>A studio for agentic software.</h1>
-        <p class="lede">I build agentic systems, and I help teams learn to build them too. In Go, from Denver.</p>
+        <p class="lede">We build agentic systems, and we help teams learn to build them too. In Go, from Denver.</p>
         <div class="term-shell"><Terminal /></div>
       </div>
     </header>
@@ -20,14 +22,14 @@ import Research from '../components/Research.astro';
       <div class="wrap">
         <p class="label">Working together</p>
         <h2>Put agents to work, safely.</h2>
-        <p>Most teams can see agentic development coming and aren't sure how to adopt it without shipping something they'll regret. I embed with your engineers to fix that: wiring agents into the real workflow, setting the guardrails, and building the security habits that keep an agentic codebase trustworthy.</p>
-        <p>The projects and research below are where I prove this out. It's the same work I'd bring to your team.</p>
+        <p>Most teams can see agentic development coming and aren't sure how to adopt it without shipping something they'll regret. We embed with your engineers to fix that: wiring agents into the real workflow, setting the guardrails, and building the security habits that keep an agentic codebase trustworthy.</p>
+        <p>The projects and research below are where we prove this out. It's the same work we'd bring to your team.</p>
         <ul class="offer">
           <li>Agentic development, in your stack and your pipeline.</li>
           <li>Security review for AI-written and agent-executed code.</li>
           <li>Hands-on with your engineers, not a slide deck.</li>
         </ul>
-        <div class="actions"><a class="btn" href="#contact">work with me →</a></div>
+        <div class="actions"><a class="btn" href="#contact">work with us →</a></div>
       </div>
     </section>
 
@@ -38,35 +40,23 @@ import Research from '../components/Research.astro';
     <section class="section" id="about">
       <div class="wrap">
         <p class="label">About</p>
-        <h2>Guy Grigsby</h2>
-        <p>Software engineer, based in Denver. I build agentic systems and AI tooling, mostly in Go, and I help teams fold that same practice, and its security, into how they ship. The projects and research here are what I'm shaping now, and the proof of what I'd bring to your work.</p>
+        <h2>The studio</h2>
+        <p>A software studio based in Denver. We build agentic systems and AI tooling, mostly in Go, and we help teams fold that same practice, and its security, into how they ship. The projects and research here are what we're shaping now, and the proof of what we'd bring to your work.</p>
       </div>
     </section>
 
-    <footer class="section" id="contact">
+    <section class="section" id="contact">
       <div class="wrap">
         <p class="label">Contact</p>
         <h2>Let's talk.</h2>
-        <p>Bringing agents into your team, hiring for a project, or just curious what I'm up to?</p>
+        <p>Bringing agents into your team, hiring for a project, or just curious what we're up to?</p>
         <div class="actions">
-          <a class="btn" id="email-btn" href="#">email me</a>
+          <a class="btn" href={`mailto:${addr}`}>support@aeryx.ai</a>
           <a class="btn ghost" href="https://github.com/guygrigsby" target="_blank" rel="noopener">github</a>
         </div>
       </div>
-    </footer>
+    </section>
   </Sky>
-
-  <script is:inline>
-    // assemble the email at runtime; the joined address is never in static HTML source
-    (function () {
-      var u = 'guy', d = 'grigsby.dev';
-      var btn = document.getElementById('email-btn');
-      if (btn) {
-        btn.setAttribute('href', 'mailto:' + u + '@' + d);
-        btn.textContent = u + '@' + d;
-      }
-    })();
-  </script>
 
   <style>
     /* .btn, .label, .wrap, .section and the heading scale come from brand.css. */
