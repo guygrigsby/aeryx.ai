@@ -1,11 +1,16 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { apps, footerLinks, supportAddress } from './site';
+import { apps, contactAddress, footerLinks, supportAddress } from './site';
 
 describe('site contact', () => {
   it('joins the support address from its parts', () => {
     expect(supportAddress()).toBe('support@aeryx.ai');
+  });
+
+  it('sends new work to hello@, not to the support channel', () => {
+    expect(contactAddress()).toBe('hello@aeryx.ai');
+    expect(contactAddress()).not.toBe(supportAddress());
   });
 });
 

@@ -4,8 +4,8 @@ import Sky from '../components/Sky.astro';
 import Terminal from '../components/Terminal.astro';
 import ProjectList from '../components/ProjectList.astro';
 import Research from '../components/Research.astro';
-import { supportAddress } from '../lib/site';
-const addr = supportAddress();
+import { contactAddress } from '../lib/site';
+const addr = contactAddress();
 ---
 <Base title="aeryx — a studio for agentic software">
   <Sky>
@@ -51,7 +51,7 @@ const addr = supportAddress();
         <h2>Let's talk.</h2>
         <p>Bringing agents into your team, hiring for a project, or just curious what we're up to?</p>
         <div class="actions">
-          <a class="btn" href={`mailto:${addr}`}>support@aeryx.ai</a>
+          <a class="btn" href={`mailto:${addr}`}>{addr}</a>
           <a class="btn ghost" href="https://github.com/guygrigsby" target="_blank" rel="noopener">github</a>
         </div>
       </div>

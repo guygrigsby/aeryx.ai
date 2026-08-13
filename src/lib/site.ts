@@ -13,6 +13,14 @@ export function supportAddress(): string {
   return `${supportEmail.user}@${supportEmail.domain}`;
 }
 
+/** Where new work comes in. Kept apart from support@ so the address on the
+ *  App Store listings and the privacy policy stays a support channel. */
+export const contactEmail = { user: 'hello', domain: 'aeryx.ai' } as const;
+
+export function contactAddress(): string {
+  return `${contactEmail.user}@${contactEmail.domain}`;
+}
+
 export interface SiteLink {
   label: string;
   href: string;
