@@ -14,7 +14,13 @@ npm run build    # static build to dist/
 
 ## Deploy
 
-A push to `main` runs `.github/workflows/deploy.yml`: test, type-check, build, then `wrangler deploy` to the `aeryx` Worker, which serves `dist/` as static assets on aeryx.ai, aeryx.dev, aeryx.io, aeryx.org and their www names. The workflow's `CLOUDFLARE_API_TOKEN` secret is scoped to Workers Scripts Write and Account Settings Read; `CLOUDFLARE_ACCOUNT_ID` is a repo variable.
+By hand, after `npm test && npm run check && npm run build`:
+
+```bash
+npx wrangler deploy
+```
+
+That uploads `dist/` to the `aeryx` Worker, which serves aeryx.ai, aeryx.dev, aeryx.io, aeryx.org and their www names as static assets. Wrangler reads `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` from the environment.
 
 ## Notes
 
