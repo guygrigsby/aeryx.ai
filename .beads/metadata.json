@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "aeryx",
+  "project_id": "6d96c404-a729-4298-a018-d6b2a2e66352"
+}
