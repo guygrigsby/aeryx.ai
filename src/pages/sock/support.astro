@@ -1,0 +1,22 @@
+---
+import Policy from '../../layouts/Policy.astro';
+import { supportAddress } from '../../lib/site';
+const addr = supportAddress();
+---
+<Policy title="Sock support — aeryx" description="Get help with Sock, report abuse, block, or delete your account." label="Sock" heading="Support">
+  <p class="lede">Write to <a href={`mailto:${addr}`}>support@aeryx.ai</a>. We answer within one business day and review abuse reports within 24 hours.</p>
+
+  <h2>Report someone</h2>
+  <p>Touch and hold a message, or open a conversation's details, and choose Report. Pick a reason, add a note if you like, and send. The messages you choose travel with the report so we can see what happened. You can block the account in the same step.</p>
+
+  <h2>Block someone</h2>
+  <p>Choose Block on their message or in the conversation's details. Their messages, and their puppets' messages, stop reaching you. They are not told. Unblock in Settings, Blocked accounts.</p>
+
+  <h2>Delete your account</h2>
+  <p>Settings, Erase account. This cannot be undone. The <a href="/sock/privacy">privacy policy</a> says exactly what is deleted.</p>
+
+  <h2>Get an invite</h2>
+  <p>Sock is invite only for now. Ask someone who uses it, or write to us.</p>
+
+  <p><a href="/sock/terms">Terms of service</a> · <a href="/sock/privacy">Privacy policy</a></p>
+</Policy>

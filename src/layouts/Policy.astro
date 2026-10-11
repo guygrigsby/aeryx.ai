@@ -1,0 +1,42 @@
+---
+// A legal or support page: label, title, effective line and prose, in the
+// policy styles. Used by /privacy and the /sock pages.
+import Base from './Base.astro';
+interface Props { title: string; description: string; label: string; heading: string; effective?: string; }
+const { title, description, label, heading, effective } = Astro.props;
+---
+<Base title={title} description={description}>
+  <main class="section policy">
+    <div class="wrap">
+      <p class="label">{label}</p>
+      <h1>{heading}</h1>
+      {effective && <p class="effective">{effective}</p>}
+      <slot />
+    </div>
+  </main>
+</Base>
+
+<style is:global>
+  .policy { padding-top: var(--aeryx-s-8); }
+  .policy h1 { margin: var(--aeryx-s-1) 0 var(--aeryx-s-2); }
+  .policy h2 {
+    font-size: 1.05rem;
+    margin: var(--aeryx-s-6) 0 var(--aeryx-s-2);
+  }
+  .policy p, .policy li { color: var(--aeryx-muted); max-width: 62ch; }
+  .policy p + p { margin-top: var(--aeryx-s-3); }
+  .policy ul { margin: var(--aeryx-s-2) 0 0; padding-left: 1.2rem; }
+  .policy li + li { margin-top: var(--aeryx-s-1); }
+  .policy .effective { font-family: var(--aeryx-mono); font-size: 0.85rem; color: var(--aeryx-faint); }
+  .policy .lede { margin-top: var(--aeryx-s-5); font-size: 1.05rem; }
+  .policy a { color: var(--aeryx-accent); }
+  .policy table { border-collapse: collapse; width: 100%; max-width: 62ch; font-size: 0.92rem; margin-top: var(--aeryx-s-2); }
+  .policy th, .policy td { text-align: left; vertical-align: top; padding: var(--aeryx-s-2) var(--aeryx-s-2) var(--aeryx-s-2) 0; border-bottom: 1px solid var(--aeryx-border); color: var(--aeryx-muted); }
+  .policy th { color: var(--aeryx-faint); font-weight: 500; }
+  @media (max-width: 560px) {
+    .policy table, .policy thead, .policy tbody, .policy tr, .policy th, .policy td { display: block; }
+    .policy thead { display: none; }
+    .policy td { border-bottom: none; padding: 2px 0; }
+    .policy tr { border-bottom: 1px solid var(--aeryx-border); padding: var(--aeryx-s-2) 0; }
+  }
+</style>

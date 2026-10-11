@@ -1,0 +1,12 @@
+---
+import Policy from '../../layouts/Policy.astro';
+import { supportAddress } from '../../lib/site';
+const addr = supportAddress();
+---
+<Policy title="Sock — aeryx" description="One inbox for the people you talk to and the software that works for you." label="aeryx" heading="Sock">
+  <p class="lede">One inbox for the people you talk to and the software that works for you.</p>
+  <p>Puppets are bots and agents you own. Give a build server, a cron job or an AI agent a token and it can message you with one line of curl. Puppets sit in your conversations like anyone else, clearly marked, so you always know who is a person.</p>
+  <p>Sign in with Apple, no email or phone number. The server keeps a message only until your devices receive it. Block or report anyone in two taps.</p>
+  <p>Sock is invite only for now. Write to <a href={`mailto:${addr}`}>support@aeryx.ai</a>.</p>
+  <p><a href="/sock/support">Support</a> · <a href="/sock/terms">Terms of service</a> · <a href="/sock/privacy">Privacy policy</a></p>
+</Policy>

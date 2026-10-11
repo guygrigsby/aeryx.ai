@@ -1,0 +1,55 @@
+---
+import Policy from '../../layouts/Policy.astro';
+import { legalName, sock, supportAddress } from '../../lib/site';
+const addr = supportAddress();
+---
+<Policy title="Sock privacy — aeryx" description="What Sock stores, why, and for how long." label="Sock" heading="Privacy policy" effective={`Effective ${sock.policyEffective}`}>
+  <p class="lede">Sock keeps as little as it can, for as short as it can. We do not sell your data, show ads, or track you across other apps and websites.</p>
+  <p>{legalName}, a Colorado limited liability company, operates Sock and is the controller of the personal data this policy describes.</p>
+
+  <h2>What we collect, and how long it is kept</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Why</th><th>Kept</th></tr></thead>
+    <tbody>
+      <tr><td>Your Apple account identifier from Sign in with Apple (not your email or name)</td><td>To recognize you when you sign in</td><td>Until you delete your account</td></tr>
+      <tr><td>Your handle and display name</td><td>So people can find and recognize you</td><td>Until you delete your account</td></tr>
+      <tr><td>Your devices (a label such as "iPhone", a hashed sign-in token) and their push notification tokens</td><td>To sign you in and deliver notifications</td><td>Until you sign out of that device or delete your account</td></tr>
+      <tr><td>Messages you send</td><td>To deliver them</td><td>Until every recipient's device has received them, 30 days at most. Your history lives on your devices, not on our servers</td></tr>
+      <tr><td>Your puppets and their hashed tokens</td><td>So your puppets can message you</td><td>Until you erase the puppet or your account</td></tr>
+      <tr><td>Who you have blocked</td><td>To stop their messages reaching you</td><td>Until you unblock them or delete your account</td></tr>
+      <tr><td>Reports you file, with the messages you attach as evidence</td><td>To review them and act on abuse</td><td>180 days after we resolve the report, or until you or the reported account is deleted</td></tr>
+      <tr><td>Which version of the terms you accepted, and when</td><td>To show you agreed to them</td><td>Until you delete your account</td></tr>
+      <tr><td>A token Apple issues when you sign in</td><td>To revoke your Sign in with Apple authorization when you delete your account</td><td>Until you delete your account, when we revoke it with Apple</td></tr>
+      <tr><td>The network address of sign-in requests</td><td>To limit abuse of sign-in</td><td>About 10 minutes</td></tr>
+    </tbody>
+  </table>
+  <p>We collect nothing else: no email, phone number, contacts, location, analytics, crash reports or advertising identifiers.</p>
+
+  <h2>Who else sees it</h2>
+  <ul>
+    <li>The people and puppets in your conversations see your handle, display name and the messages you send them.</li>
+    <li>When you report someone, the Sock operator sees your report, including the messages you attach.</li>
+    <li>Third parties process data on our behalf: Render (hosting and database, United States) and Apple (Sign in with Apple and push notifications). Push notifications carry no message text.</li>
+  </ul>
+  <p>We do not sell or share your personal information for advertising. We disclose it to authorities only when the law requires it.</p>
+
+  <h2>Your choices</h2>
+  <ul>
+    <li>Export: Settings, Export my data.</li>
+    <li>Delete: Settings, Erase account. This deletes your account, puppets and devices, removes you from conversations, deletes undelivered messages you sent, and revokes your Sign in with Apple authorization.</li>
+    <li>Block and report: from any conversation or account.</li>
+  </ul>
+  <p>Depending on where you live, laws such as the GDPR and the CCPA give you further rights, such as access, correction, deletion and objection. Write to us to use them.</p>
+
+  <h2>Children</h2>
+  <p>Sock is not for children under 13. If you believe a child under 13 has an account, contact us and we will delete it.</p>
+
+  <h2>Security</h2>
+  <p>Connections are encrypted with TLS. Sign-in and puppet tokens are stored only as hashes.</p>
+
+  <h2>Changes</h2>
+  <p>We will post changes here with a new effective date and, when they matter, tell you in the app.</p>
+
+  <h2>Contact</h2>
+  <p><a href={`mailto:${addr}`}>support@aeryx.ai</a></p>
+</Policy>
