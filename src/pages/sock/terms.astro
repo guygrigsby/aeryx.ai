@@ -1,9 +1,9 @@
 ---
-import Policy from '../../layouts/Policy.astro';
+import Sock from '../../layouts/Sock.astro';
 import { legalName, sock, supportAddress } from '../../lib/site';
 const addr = supportAddress();
 ---
-<Policy title="Sock terms — aeryx" description="The rules for using Sock." label="Sock" heading="Terms of service" effective={`Version ${sock.termsVersion}`}>
+<Sock title="Sock terms" description="The rules for using Sock." heading="Terms of service" effective={`Version ${sock.termsVersion}`}>
   <p class="lede">Sock lets people message each other and the software agents ("puppets") they own. By creating an account you agree to these terms. If you do not agree, do not use Sock.</p>
   <p>{legalName} operates Sock, so "we" and "us" below mean that company.</p>
 
@@ -43,4 +43,4 @@ const addr = supportAddress();
 
   <h2>Contact</h2>
   <p><a href={`mailto:${addr}`}>support@aeryx.ai</a></p>
-</Policy>
+</Sock>

@@ -1,9 +1,9 @@
 ---
-import Policy from '../../layouts/Policy.astro';
+import Sock from '../../layouts/Sock.astro';
 import { legalName, sock, supportAddress } from '../../lib/site';
 const addr = supportAddress();
 ---
-<Policy title="Sock privacy — aeryx" description="What Sock stores, why, and for how long." label="Sock" heading="Privacy policy" effective={`Effective ${sock.policyEffective}`}>
+<Sock title="Sock privacy" description="What Sock stores, why, and for how long." heading="Privacy policy" effective={`Effective ${sock.policyEffective}`}>
   <p class="lede">Sock keeps as little as it can, for as short as it can. We do not sell your data, show ads, or track you across other apps and websites.</p>
   <p>{legalName}, a Colorado limited liability company, operates Sock and is the controller of the personal data this policy describes.</p>
 
@@ -52,4 +52,4 @@ const addr = supportAddress();
 
   <h2>Contact</h2>
   <p><a href={`mailto:${addr}`}>support@aeryx.ai</a></p>
-</Policy>
+</Sock>

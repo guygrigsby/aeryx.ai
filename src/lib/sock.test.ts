@@ -67,3 +67,21 @@ describe('the aeryx privacy policy', () => {
     expect(shared).toContain('/sock/privacy');
   });
 });
+
+describe('sock pages wear the Sock identity', () => {
+  it('render through the Sock layout, not the aeryx one', () => {
+    for (const name of ['index', 'privacy', 'terms', 'support']) {
+      expect(page(name)).toContain("from '../../layouts/Sock.astro'");
+    }
+  });
+
+  it('show the Sock wordmark and emblem from the brand pack', () => {
+    const layout = readFileSync(join(import.meta.dirname, '..', 'layouts', 'Sock.astro'), 'utf8');
+    expect(layout).toContain('/sock/wordmark.svg');
+    expect(layout).toContain('/sock/emblem.svg');
+    for (const asset of ['wordmark.svg', 'emblem.svg']) {
+      const svg = readFileSync(join(import.meta.dirname, '..', '..', 'public', 'sock', asset), 'utf8');
+      expect(svg).toContain('<svg');
+    }
+  });
+});

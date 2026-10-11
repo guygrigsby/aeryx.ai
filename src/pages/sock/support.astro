@@ -1,9 +1,9 @@
 ---
-import Policy from '../../layouts/Policy.astro';
+import Sock from '../../layouts/Sock.astro';
 import { supportAddress } from '../../lib/site';
 const addr = supportAddress();
 ---
-<Policy title="Sock support — aeryx" description="Get help with Sock, report abuse, block, or delete your account." label="Sock" heading="Support">
+<Sock title="Sock support" description="Get help with Sock, report abuse, block, or delete your account." heading="Support">
   <p class="lede">Write to <a href={`mailto:${addr}`}>support@aeryx.ai</a>. We answer within one business day and review abuse reports within 24 hours.</p>
 
   <h2>Report someone</h2>
@@ -19,4 +19,4 @@ const addr = supportAddress();
   <p>Sock is invite only for now. Ask someone who uses it, or write to us.</p>
 
   <p><a href="/sock/terms">Terms of service</a> · <a href="/sock/privacy">Privacy policy</a></p>
-</Policy>
+</Sock>
