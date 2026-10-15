@@ -11,7 +11,9 @@ const addr = contactAddress();
   <Sky>
     <header class="hero section">
       <div class="wrap">
-        <p class="label">aeryx</p>
+        <a class="studio-brand" href="/" aria-label="aeryx home">
+          <img src="/brand/aeryx-horizontal-lavender.svg" alt="aeryx" width="1184" height="320" fetchpriority="high" />
+        </a>
         <h1>A studio for agentic software.</h1>
         <p class="lede">We build agentic systems, and we help teams learn to build them too. In Go, from Denver.</p>
         <div class="term-shell"><Terminal /></div>
@@ -61,6 +63,9 @@ const addr = contactAddress();
   <style>
     /* .btn, .label, .wrap, .section and the heading scale come from brand.css. */
     .hero { padding-top: var(--aeryx-s-9); }
+    .studio-brand { display: block; width: 240px; max-width: 100%; margin-bottom: var(--aeryx-s-5); }
+    .studio-brand img { display: block; width: 100%; height: auto; }
+    .studio-brand:focus-visible { outline: 2px solid var(--aeryx-accent); outline-offset: 8px; border-radius: 4px; }
     .hero h1 { margin: var(--aeryx-s-1) 0 var(--aeryx-s-3); }
     .lede { font-size: 1.15rem; color: var(--aeryx-muted); max-width: 38ch; }
     .term-shell { margin-top: var(--aeryx-s-7); }

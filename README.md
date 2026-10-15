@@ -24,6 +24,8 @@ That uploads `dist/` to the `aeryx` Worker, which serves aeryx.ai, aeryx.dev, ae
 
 ## Notes
 
+- The logo kit, colors, spacing rules and export instructions live in [brand/README.md](brand/README.md). View the asset sheet at `/brand/` during development. Run `npm run brand:export` after editing the SVG masters.
+
 - Project data lives in `src/lib/projects.ts`, contact and footer links in `src/lib/site.ts` (single sources of truth).
 - Contact is the `support@aeryx.ai` role address, in plain markup so a policy link works without JS. Cloudflare Scrape Shield obfuscates it at the edge. `src/lib/email-guard.test.ts` keeps the personal address from coming back.
 - `/privacy` covers the site and the iOS apps listed in `site.ts`. Adding an app to that list fails the tests until the policy names it.

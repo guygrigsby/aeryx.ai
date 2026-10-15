@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "test": "vitest run",
-    "brand": "for f in tokens.css brand.css fonts.css; do curl -fsSL --create-dirs -o src/styles/vendor/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/$f || exit 1; done && for f in hack-regular.woff2 hack-bold.woff2 LICENSE.md; do curl -fsSL --create-dirs -o public/fonts/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/fonts/$f || exit 1; done"
+    "brand": "for f in tokens.css brand.css fonts.css; do curl -fsSL --create-dirs -o src/styles/vendor/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/$f || exit 1; done && for f in hack-regular.woff2 hack-bold.woff2 LICENSE.md; do curl -fsSL --create-dirs -o public/fonts/$f https://raw.githubusercontent.com/guygrigsby/aeryx-brand/$npm_package_config_brandRef/brand/fonts/$f || exit 1; done",
+    "brand:export": "node scripts/export-brand.mjs"
   },
   "config": {
     "brandRef": "1bc7d16cd49b25b97553a7d31a20aaae76a2324b"
@@ -19,6 +20,7 @@
     "@types/node": "^26.2.0",
     "astro": "^5.0.0",
     "jsdom": "^25.0.0",
+    "sharp": "0.34.5",
     "typescript": "^5.6.0",
     "vitest": "^2.1.0",
     "wrangler": "^4.0.0"
