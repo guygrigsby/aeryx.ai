@@ -2,6 +2,9 @@
 import Sock from '../../layouts/Sock.astro';
 import { supportAddress } from '../../lib/site';
 const addr = supportAddress();
+// Captioned App Store screenshots, from sock/apple's store-screenshots scripts.
+const phone = ['One quiet inbox for people and bots', 'Puppets report where your team talks', 'A puppet posting a build result', 'A new puppet token and its curl line', 'Reporting a message in two taps'];
+const mac = ['Sock on the Mac, a group with people and puppets', 'Jump anywhere with Command-K', 'Search every message with Command-G', 'A puppet posting a build result on the Mac'];
 ---
 <Sock title="Sock" description="One inbox for the people you talk to and the software that works for you." hero>
   <img class="mark" src="/sock/emblem.svg" alt="" width="120" height="120" />
@@ -13,5 +16,13 @@ const addr = supportAddress();
   <p>Sock is invite only for now. Write to <a href={`mailto:${addr}`}>support@aeryx.ai</a> for an invite.</p>
   <div class="links">
     <a class="pill" href={`mailto:${addr}?subject=Sock%20invite`}>Ask for an invite</a>
+  </div>
+  <h2>iPhone</h2>
+  <div class="shots phone">
+    {phone.map((alt, i) => <img src={`/sock/shots/iphone-${i + 1}.jpg`} alt={alt} width="660" height="1434" loading="lazy" />)}
+  </div>
+  <h2>Mac</h2>
+  <div class="shots mac">
+    {mac.map((alt, i) => <img src={`/sock/shots/mac-${i + 1}.jpg`} alt={alt} width="1520" height="950" loading="lazy" />)}
   </div>
 </Sock>
