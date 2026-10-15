@@ -1,3 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path d="M25 5C14 7 8 15 7 26c0 0 6-2 9-6 0 0-3 1-5 0 0 0 8-2 11-9 0 0-4 2-6 1 0 0 9-3 9-8z" fill="#2f6bff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="576" height="576" viewBox="0 0 576 576" fill="#A98FD6" fill-rule="evenodd"><title>Aeryx</title><path fill="#08090B" d="M0 0H576V576H0Z"/><g transform="translate(0 128)"><path id="arch" stroke="#A98FD6" stroke-width="6" stroke-linejoin="round" d="M93 219 C119 194 137 172 161 138 C216 61 251 32 299 25 C324 21 350 28 370 42 C396 59 412 83 442 147 C460 186 470 205 480 215 L468 234 C443 210 426 185 391 125 C362 73 339 52 309 54 C278 56 254 75 208 132 C168 182 142 208 117 225 L107 232 Z"/>
+<path id="human" d="M113 252 A44 44 0 1 1 25 252 A44 44 0 1 1 113 252 Z"/>
+<path id="agent" d="M485 208 H533 A20 20 0 0 1 553 228 V276 A20 20 0 0 1 533 296 H485 A20 20 0 0 1 465 276 V228 A20 20 0 0 1 485 208 Z"/></g></svg>
