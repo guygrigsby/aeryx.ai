@@ -29,6 +29,6 @@ That uploads `dist/` to the `aeryx` Worker, which serves aeryx.ai, aeryx.dev, ae
 - Project data lives in `src/lib/projects.ts`, contact and footer links in `src/lib/site.ts` (single sources of truth).
 - Contact is the `support@aeryx.ai` role address, in plain markup so a policy link works without JS. Cloudflare Scrape Shield obfuscates it at the edge. `src/lib/email-guard.test.ts` keeps the personal address from coming back.
 - `/privacy` covers the site and the iOS apps listed in `site.ts`. Adding an app to that list fails the tests until the policy names it.
-- Sock has accounts and a server, so its policy, terms and support pages live under `/sock` (`src/pages/sock`), with `sock.termsVersion` in `site.ts` matching the version the app and server require. `src/lib/sock.test.ts` holds them to Apple's requirements.
+- Sock's pages live at joinsock.com. `public/_redirects` sends the old `/sock` URLs there; `src/lib/sock.test.ts` keeps the mapping.
 - All motion respects `prefers-reduced-motion`.
 - The 404 page hides a boids flock easter egg.

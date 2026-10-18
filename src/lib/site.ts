@@ -42,12 +42,3 @@ export const apps: string[] = ['loggit', 'Just Next'];
 
 /** The date the current privacy policy took effect. */
 export const policyEffective = '13 August 2026';
-
-/** Sock has a server, accounts and messages, so it has its own policy and terms
- *  under /sock instead of the no-data policy at /privacy. termsVersion is what
- *  the app sends as accepted_terms_version and what sockd's SOCK_TERMS_VERSION
- *  must equal; change all three together. */
-export const sock = {
-  termsVersion: '2026-10-11',
-  policyEffective: '11 October 2026',
-} as const;

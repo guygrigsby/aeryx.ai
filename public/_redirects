@@ -1,0 +1,10 @@
+# Sock's site moved to joinsock.com. First match wins, so the catch-all stays last.
+/sock https://joinsock.com/ 301
+/sock/ https://joinsock.com/ 301
+/sock/terms https://joinsock.com/terms/ 301
+/sock/terms/ https://joinsock.com/terms/ 301
+/sock/privacy https://joinsock.com/privacy/ 301
+/sock/privacy/ https://joinsock.com/privacy/ 301
+/sock/support https://joinsock.com/support/ 301
+/sock/support/ https://joinsock.com/support/ 301
+/sock/* https://joinsock.com/ 301

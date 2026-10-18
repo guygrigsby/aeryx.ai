@@ -1,87 +1,35 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { sock, supportAddress } from './site';
 
-const page = (name: string) =>
-  readFileSync(join(import.meta.dirname, '..', 'pages', 'sock', `${name}.astro`), 'utf8');
+const root = join(import.meta.dirname, '..', '..');
+const rules = readFileSync(join(root, 'public', '_redirects'), 'utf8')
+  .split('\n')
+  .filter((l) => l.trim() && !l.startsWith('#'))
+  .map((l) => l.trim().split(/\s+/));
 
-// Apple reads these pages during review, and the app links to each by URL, so
-// the requirements are asserted against the source instead of left to a reread.
-describe('sock pages', () => {
-  it('has the four pages the app and the listing link to', () => {
-    for (const name of ['index', 'privacy', 'terms', 'support']) {
-      expect(() => page(name)).not.toThrow();
-    }
+// Sock's pages live at joinsock.com. Old links (search results, earlier app
+// builds, past review notes) must land on the same page there, not a 404.
+describe('sock moved to joinsock.com', () => {
+  it.each([
+    ['/sock', 'https://joinsock.com/'],
+    ['/sock/', 'https://joinsock.com/'],
+    ['/sock/terms', 'https://joinsock.com/terms/'],
+    ['/sock/terms/', 'https://joinsock.com/terms/'],
+    ['/sock/privacy', 'https://joinsock.com/privacy/'],
+    ['/sock/privacy/', 'https://joinsock.com/privacy/'],
+    ['/sock/support', 'https://joinsock.com/support/'],
+    ['/sock/support/', 'https://joinsock.com/support/'],
+  ])('%s redirects permanently to %s', (from, to) => {
+    expect(rules).toContainEqual([from, to, '301']);
   });
 
-  it('carries the support address in static markup on every page', () => {
-    for (const name of ['index', 'privacy', 'terms', 'support']) {
-      expect(page(name)).toContain(supportAddress());
-    }
-  });
-});
-
-describe('sock terms', () => {
-  const terms = page('terms');
-
-  it('states the version the app sends as accepted_terms_version', () => {
-    expect(sock.termsVersion).toBe('2026-10-11');
-    expect(terms).toContain('sock.termsVersion');
+  it('sends anything else under /sock to the joinsock.com home', () => {
+    expect(rules.at(-1)).toEqual(['/sock/*', 'https://joinsock.com/', '301']);
   });
 
-  it('says there is no tolerance for objectionable content or abusive users', () => {
-    expect(terms.toLowerCase()).toContain('no tolerance');
-    expect(terms.toLowerCase()).toContain('abusive users');
-  });
-
-  it('commits to reviewing reports and removing violators', () => {
-    expect(terms).toContain('24 hours');
-    expect(terms.toLowerCase()).toContain('suspend');
-  });
-
-  it('names the company and the law it is under', () => {
-    expect(terms).toContain('legalName');
-    expect(terms).toContain('Colorado');
-  });
-});
-
-describe('sock privacy policy', () => {
-  const policy = page('privacy').toLowerCase();
-
-  it('answers collection, sharing, retention, deletion and children', () => {
-    for (const topic of ['collect', 'third part', 'kept', 'delete', 'children']) {
-      expect(policy).toContain(topic);
-    }
-  });
-
-  it('names the processors and the Sign in with Apple revocation', () => {
-    expect(policy).toContain('render');
-    expect(policy).toContain('revoke');
-  });
-});
-
-describe('the aeryx privacy policy', () => {
-  it('points Sock users at the Sock policy, which differs from it', () => {
-    const shared = readFileSync(join(import.meta.dirname, '..', 'pages', 'privacy.astro'), 'utf8');
-    expect(shared).toContain('/sock/privacy');
-  });
-});
-
-describe('sock pages wear the Sock identity', () => {
-  it('render through the Sock layout, not the aeryx one', () => {
-    for (const name of ['index', 'privacy', 'terms', 'support']) {
-      expect(page(name)).toContain("from '../../layouts/Sock.astro'");
-    }
-  });
-
-  it('show the Sock wordmark and emblem from the brand pack', () => {
-    const layout = readFileSync(join(import.meta.dirname, '..', 'layouts', 'Sock.astro'), 'utf8');
-    expect(layout).toContain('/sock/wordmark.svg');
-    expect(layout).toContain('/sock/emblem.svg');
-    for (const asset of ['wordmark.svg', 'emblem.svg']) {
-      const svg = readFileSync(join(import.meta.dirname, '..', '..', 'public', 'sock', asset), 'utf8');
-      expect(svg).toContain('<svg');
-    }
+  it('serves no sock pages of its own that would shadow the redirects', () => {
+    expect(existsSync(join(root, 'src', 'pages', 'sock'))).toBe(false);
+    expect(existsSync(join(root, 'public', 'sock'))).toBe(false);
   });
 });
