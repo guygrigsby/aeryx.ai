@@ -1,9 +1,25 @@
 ---
 import '../styles/global.css';
 import SiteFooter from '../components/SiteFooter.astro';
+import { legalName } from '../lib/site';
 interface Props { title: string; description?: string; }
 const { title, description = 'A studio for agentic software.' } = Astro.props;
 const socialImage = new URL('/brand/social-preview.png', Astro.site).href;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://aeryx.ai/#organization',
+  name: 'aeryx',
+  legalName,
+  url: 'https://aeryx.ai/',
+  founder: {
+    '@type': 'Person',
+    '@id': 'https://grigsby.dev/#person',
+    name: 'Guy Grigsby',
+    url: 'https://grigsby.dev/',
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -17,6 +33,9 @@ const socialImage = new URL('/brand/social-preview.png', Astro.site).href;
     <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organization)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
